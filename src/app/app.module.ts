@@ -1,3 +1,4 @@
+import { SidenavcoursesComponent } from './sidenavcourses/sidenavcourses.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -5,6 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // import { AngularFireModule } from 'angularfire2';
 // import { AngularFireDatabaseModule } from 'angularfire2/database';
+import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
@@ -22,6 +24,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { CoursesComponent } from './courses/courses.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { CoursesComponent } from './courses/courses.component';
     NavbarComponent,
     SidenavComponent,
     CoursesComponent,
+    SidenavcoursesComponent,
+    HomeComponent
     
   ],
   imports: [
@@ -46,6 +51,16 @@ import { CoursesComponent } from './courses/courses.component';
     BrowserAnimationsModule,
     // AngularFireModule.initializeApp(environment.firebase),
     // AngularFireDatabaseModule,
+    RouterModule.forRoot([
+      {
+        path:'',
+        component:HomeComponent
+      },
+      {
+        path:'courses',
+        component:CoursesComponent
+      },
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,8 +1,8 @@
 <mat-drawer-container class="example-container">
   <mat-drawer class="left-side" mode="side" opened>
-      <mat-list  role="list">
-        <mat-list-item role="listitem">Cursuri</mat-list-item> 
-      </mat-list>
+      <mat-nav-list>
+          <a mat-list-item routerLink="/courses">Cursuri</a>
+       </mat-nav-list>
   </mat-drawer>
-  <mat-drawer-content>Main content</mat-drawer-content>
+  <mat-drawer-content class="right-side">Main content</mat-drawer-content>
 </mat-drawer-container>
