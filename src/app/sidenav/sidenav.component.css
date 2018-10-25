@@ -1,0 +1,13 @@
+.example-container {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;  
+  }
+  
+  .left-side{
+    width:15%;
+    text-align: center;
+  }
