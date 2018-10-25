@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
-// import { AngularFireModule } from 'angularfire2';
-// import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -49,8 +50,8 @@ import { HomeComponent } from './home/home.component';
     MatButtonModule,
     BrowserModule,
     BrowserAnimationsModule,
-    // AngularFireModule.initializeApp(environment.firebase),
-    // AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule,
     RouterModule.forRoot([
       {
         path:'',
