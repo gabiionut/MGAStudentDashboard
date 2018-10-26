@@ -1,18 +1,24 @@
-import { SidenavcoursesComponent } from './sidenavcourses/sidenavcourses.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
+import { environment } from '../environments/environment';
+
 import {RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { environment } from '../environments/environment';
+import { SidenavcoursesComponent } from './sidenavcourses/sidenavcourses.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CoursesComponent } from 'c:/Users/emil_/Documents/MGAStudentDashboard/src/app/pages/courses/courses.component';
+import { HomeComponent } from 'c:/Users/emil_/Documents/MGAStudentDashboard/src/app/pages/home/home.component';
+import { ChooseCcoursesStructureFormComponent } from './dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
 
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatDialogModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
@@ -21,11 +27,10 @@ import {SidenavComponent } from './sidenav/sidenav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
-import {MatDialogModule} from '@angular/material/dialog';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { CoursesComponent } from './courses/courses.component';
-import { HomeComponent } from './home/home.component';
+
+
 
 @NgModule({
   declarations: [
@@ -34,10 +39,13 @@ import { HomeComponent } from './home/home.component';
     SidenavComponent,
     CoursesComponent,
     SidenavcoursesComponent,
-    HomeComponent
-    
+    HomeComponent,
+    ChooseCcoursesStructureFormComponent,
   ],
   imports: [
+    MatCheckboxModule,
+    FormsModule,
+    MatDialogModule, 
     MatFormFieldModule,
     MatExpansionModule,
     MatDialogModule,
@@ -64,6 +72,7 @@ import { HomeComponent } from './home/home.component';
     ])
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ChooseCcoursesStructureFormComponent],
 })
 export class AppModule { }
