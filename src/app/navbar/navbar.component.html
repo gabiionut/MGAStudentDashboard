@@ -1,13 +1,27 @@
 <mat-toolbar>
-    <button class="navbar" mat-menu-item routerLink="/" >
+    <mat-icon class="logo-icon">home</mat-icon>
+    <div class="logo" routerLink="/" >
       Student DashBoard
-    </button>
+    </div>
     <span class="fill-remaining-space"></span>
     <span>
-    <button class="navbar" mat-menu-item [matMenuTriggerFor]="menu">Student Name</button>
+    <span class="user-name">John Doe</span>
+    <button class="navbar-menu" mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>Item 1</button>
-      <button mat-menu-item>Item 2</button>
+      <button mat-menu-item>
+        <mat-icon>dialpad</mat-icon>
+        <span>Redial</span>
+      </button>
+      <button mat-menu-item disabled>
+        <mat-icon>voicemail</mat-icon>
+        <span>Check voicemail</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>notifications_off</mat-icon>
+        <span>Log out</span>
+      </button>
     </mat-menu>
   </span>
   </mat-toolbar>
