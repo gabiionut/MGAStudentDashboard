@@ -27,7 +27,7 @@ export class ChooseCcoursesStructureFormComponent {
        this.dialogRef.close();
      }
 
-    onNoClick(): void {
+    closeDialog(): void {
       this.dialogRef.close();
     }
 }
