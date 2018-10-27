@@ -1,9 +1,26 @@
 <mat-drawer-container class="example-container">
     <mat-drawer class="left-side" mode="side" opened>
       <button mat-button (click)="openDialog()">Adauga curs</button>  
-      <mat-list  role="list">
-          <mat-list-item role="listitem">Miercuri</mat-list-item> 
-        </mat-list>
+      
+      <div *ngFor="let c of courses$ | async">
+      <mat-accordion >
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+              {{c.nume}}
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+            <mat-list role="list">
+            <mat-list-item role="listitem" *ngIf="c.curs">Curs</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="c.laborator">Laborator</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="c.seminar">Seminar</mat-list-item>
+            <mat-list-item role="listitem" *ngIf="c.proiect">Proiect</mat-list-item>
+            </mat-list>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
     </mat-drawer>
     <mat-drawer-content>Main content</mat-drawer-content>
   </mat-drawer-container>
+
+  
