@@ -1,8 +1,8 @@
 export interface Course {
-    //id: string;
-    numeMaterie: string;
-    curs: string;
-    laborator: string;
-    seminar: string;
-    proiect: string;
+    id: string;
+    materie: string;
+    curs: boolean;
+    laborator: boolean;
+    seminar: boolean;
+    proiect: boolean;
 }

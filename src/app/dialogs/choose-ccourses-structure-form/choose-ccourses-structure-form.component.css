@@ -1,0 +1,8 @@
+.mat-form-field--no-underline .mat-input-underline {
+    background-color: transparent;
+}
+
+.folder-structure-choise{
+    display: inline-flex;
+    flex-direction: column;
+}

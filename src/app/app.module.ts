@@ -17,6 +17,8 @@ import { CoursesComponent } from 'c:/Users/emil_/Documents/MGAStudentDashboard/s
 import { HomeComponent } from 'c:/Users/emil_/Documents/MGAStudentDashboard/src/app/pages/home/home.component';
 import { ChooseCcoursesStructureFormComponent } from './dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
 
+
+import {MatInputModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
@@ -29,7 +31,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatTreeModule} from '@angular/material/tree';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatFormFieldModule} from '@angular/material/form-field';
-
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 
 
 @NgModule({
@@ -43,6 +46,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ChooseCcoursesStructureFormComponent,
   ],
   imports: [
+    MatRadioModule,
+    MatSelectModule,
+    MatInputModule,
     MatCheckboxModule,
     FormsModule,
     MatDialogModule, 

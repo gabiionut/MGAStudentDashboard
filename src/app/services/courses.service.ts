@@ -6,5 +6,9 @@ import { AngularFireDatabase } from 'angularfire2/database';
 })
 export class CoursesService {
 
-  constructor(db: AngularFireDatabase) { }
+  constructor(public db: AngularFireDatabase) { }
+
+  create(course){
+    this.db.list('/courses').push(course);
+  }
 }
