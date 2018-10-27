@@ -25,6 +25,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SidenavComponent } from './sidenav/sidenav.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatListModule} from '@angular/material/list';
@@ -53,7 +54,7 @@ import { HomeComponent } from './pages/home/home.component';
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatDialogModule, 
+    MatDialogModule,
     MatFormFieldModule,
     MatExpansionModule,
     MatDialogModule,
@@ -61,6 +62,7 @@ import { HomeComponent } from './pages/home/home.component';
     MatIconModule,
     MatListModule,
     MatSidenavModule,
+    MatSnackBarModule,
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
@@ -70,12 +72,12 @@ import { HomeComponent } from './pages/home/home.component';
     AngularFireDatabaseModule,
     RouterModule.forRoot([
       {
-        path:'',
-        component:HomeComponent
+        path: '',
+        component: HomeComponent
       },
       {
-        path:'courses',
-        component:CoursesComponent
+        path: 'courses',
+        component: CoursesComponent
       },
     ])
   ],

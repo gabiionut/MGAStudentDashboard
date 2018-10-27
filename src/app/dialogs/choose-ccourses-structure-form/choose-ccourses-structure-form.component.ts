@@ -12,10 +12,10 @@ import { Course } from 'src/app/models/course';
 export class ChooseCcoursesStructureFormComponent {
 
   nume: string;
-  curs: boolean = true;
-  laborator: boolean = true;
-  seminar: boolean = false;
-  proiect: boolean = false;
+  curs = true;
+  laborator = true;
+  seminar = false;
+  proiect = false;
 
   constructor(public dialogRef: MatDialogRef<ChooseCcoursesStructureFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, public coursesService: CoursesService) {
