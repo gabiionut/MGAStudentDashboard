@@ -16,7 +16,7 @@ export class SidenavcoursesComponent {
 
   courses$: Observable<Course[]>;
   constructor(
-    public dialog: MatDialog, 
+    public dialog: MatDialog,
     public coursesService: CoursesService,
     ) {
     this.courses$ = this.coursesService.getAll().valueChanges();

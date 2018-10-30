@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angularfire2/database';
 import { Course } from './../models/course';
 import { MatSnackBar } from '@angular/material';
 @Injectable({
@@ -10,6 +10,7 @@ export class CoursesService {
   constructor(public db: AngularFireDatabase, public snackBar: MatSnackBar) { }
 
   create(course) {
+    console.log(course);
     this.db.list('/courses').push(course).then(res => this.snackBar.open('Curs adaugat! ✔️', null, {duration: 2000}));
   }
 
@@ -17,11 +18,11 @@ export class CoursesService {
     return this.db.list('/courses');
   }
 
-  get(courseName){
+  get(courseName): AngularFireObject<Course> {
     return this.db.object('/courses/' + courseName);
   }
 
-  update(courseName,course){
+  update(courseName, course) {
     return this.db.object('/courses/' + courseName).update(course);
   }
 }
