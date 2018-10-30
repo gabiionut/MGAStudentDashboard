@@ -22,4 +22,13 @@ describe('SidenavcoursesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  $('.course-edit input[type="button"]').on('focus', function(){
+    $('.mat-expansion-panel-header').prop('disabled', true).addClass('disabled');
+    
+  }).on('blur', function(){
+     $('.mat-expansion-panel-header').prop('disabled', false).removeClass('disabled'); 
+  });
+
 });
+

@@ -16,4 +16,12 @@ export class CoursesService {
   getAll(): AngularFireList<Course> {
     return this.db.list('/courses');
   }
+
+  get(courseName){
+    return this.db.object('/courses/' + courseName);
+  }
+
+  update(courseName,course){
+    return this.db.object('/courses/' + courseName).update(course);
+  }
 }

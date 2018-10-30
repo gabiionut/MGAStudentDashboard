@@ -6,7 +6,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-
+import * as $ from 'jquery';
 
 import { environment } from '../environments/environment';
 
@@ -76,9 +76,14 @@ import { HomeComponent } from './pages/home/home.component';
         component: HomeComponent
       },
       {
+        path: 'courses/:id',
+        component: CoursesComponent
+      },
+      {
         path: 'courses',
         component: CoursesComponent
       },
+      
     ])
   ],
   providers: [],

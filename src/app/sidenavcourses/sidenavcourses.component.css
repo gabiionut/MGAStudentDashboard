@@ -11,3 +11,7 @@
     width:15%;
     text-align: center;
   }
+  .disabled
+  {
+      background-color: orange;
+  }

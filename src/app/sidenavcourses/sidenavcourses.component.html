@@ -1,14 +1,28 @@
 <mat-drawer-container class="example-container">
     <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
-      <button mat-button (click)="openDialog()">Adauga curs</button>  
-      
+        <button  mat-button (click)="openDialog()">Adauga curs</button>  
       <div *ngFor="let c of courses$ | async">
-      <mat-accordion >
-          <mat-expansion-panel>
+        <mat-accordion >
+          <mat-expansion-panel [disabled]="isDisabled">
             <mat-expansion-panel-header>
               <mat-panel-title>
               {{c.nume}}
               </mat-panel-title>
+              <span >
+                <button mat-icon-button [matMenuTriggerFor]="menu">
+                  <mat-icon>more_vert</mat-icon>
+                </button>
+                <mat-menu #menu="matMenu">
+                  <button mat-menu-item [routerLink]="['/courses', c.nume]" (click)="openDialog()">
+                    <mat-icon>edit</mat-icon>
+                    <span>Edit</span>
+                  </button>
+                  <button mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>Delete</span>
+                    </button>
+                  </mat-menu>
+                </span>
             </mat-expansion-panel-header>
             <mat-list role="list">
             <mat-list-item role="listitem" *ngIf="c.curs">Curs</mat-list-item>

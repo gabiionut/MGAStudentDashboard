@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from './../../services/courses.service';
 import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -16,14 +17,29 @@ export class ChooseCcoursesStructureFormComponent {
   laborator = true;
   seminar = false;
   proiect = false;
+  id;
+  course={};
 
-  constructor(public dialogRef: MatDialogRef<ChooseCcoursesStructureFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, public coursesService: CoursesService) {
+  constructor(
+    public dialogRef: MatDialogRef<ChooseCcoursesStructureFormComponent>,
+    @Inject(MAT_DIALOG_DATA) 
+    public data: any, 
+    public coursesService: CoursesService,
+    public route: ActivatedRoute,
+    )
+    {
+      this.id = this.route.snapshot.paramMap.get('name');
 
+      if(this.id) 
+       this.coursesService.get(this.id).valueChanges().subscribe(c => this.course = c)
   }
 
   add(course) {
-    this.coursesService.create(course);
+    if(this.id)
+      this.coursesService.update(this.id,course);
+    else 
+      this.coursesService.create(course);
+    
     this.dialogRef.close();
   }
 
