@@ -23,9 +23,14 @@ export class SidenavcoursesComponent {
    }
 
   openDialog() {
+  const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
+    width: '250px'
+  });
+  }
+  openDialogEdit(id) {
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
+      data: id
     });
   }
 }
-

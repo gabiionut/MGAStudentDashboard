@@ -1,3 +1,5 @@
+import { CoursesService } from './services/courses.service';
+import { Course } from 'src/app/models/course';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -34,6 +36,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './login/login.component';
 
 
 @NgModule({
@@ -45,14 +48,15 @@ import { HomeComponent } from './pages/home/home.component';
     SidenavcoursesComponent,
     HomeComponent,
     ChooseCcoursesStructureFormComponent,
+    LoginComponent,
   ],
   imports: [
+    MatDialogModule,
     MatRadioModule,
     MatSelectModule,
     MatInputModule,
     MatCheckboxModule,
     FormsModule,
-    MatDialogModule,
     MatFormFieldModule,
     MatExpansionModule,
     MatDialogModule,
@@ -75,7 +79,7 @@ import { HomeComponent } from './pages/home/home.component';
       },
       {
         path: 'courses/:id',
-        component: CoursesComponent
+        component: CoursesComponent,
       },
       {
         path: 'courses',
@@ -83,7 +87,9 @@ import { HomeComponent } from './pages/home/home.component';
       },
     ])
   ],
-  providers: [],
+  providers: [
+    CoursesService,
+  ],
   bootstrap: [AppComponent],
   entryComponents: [ChooseCcoursesStructureFormComponent],
 })

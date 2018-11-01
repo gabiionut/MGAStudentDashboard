@@ -1,5 +1,5 @@
 export class Course {
-    materie: string;
+    nume: string;
     curs: boolean;
     laborator: boolean;
     seminar: boolean;
