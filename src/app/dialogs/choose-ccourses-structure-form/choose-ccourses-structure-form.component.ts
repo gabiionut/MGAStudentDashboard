@@ -25,8 +25,8 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(`ID: ${this.data}`)
     this.id = this.route.snapshot.params['id'];
-    console.log(this.id);
     if (this.id) {
       this.coursesService.get(this.id).valueChanges().subscribe(c => this.course = c);
     }

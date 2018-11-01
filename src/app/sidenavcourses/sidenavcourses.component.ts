@@ -22,9 +22,10 @@ export class SidenavcoursesComponent {
     this.courses$ = this.coursesService.getAll().valueChanges();
    }
 
-  openDialog() {
+  openDialog(id) {
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
+      data: id
     });
   }
 }
