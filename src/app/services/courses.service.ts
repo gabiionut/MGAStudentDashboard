@@ -3,7 +3,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angular
 import { Course } from './../models/course';
 import { MatSnackBar } from '@angular/material';
 import {Observable} from 'rxjs/Observable';
-import * as Rx from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'

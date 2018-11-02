@@ -1,5 +1,7 @@
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthenticationService } from './services/authentication.service';
 import { CoursesService } from './services/courses.service';
-import { Course } from 'src/app/models/course';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule} from '@angular/forms';
@@ -7,6 +9,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
 
 import { environment } from '../environments/environment';
 
@@ -36,6 +40,8 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import { CoursesComponent } from './pages/courses/courses.component';
 import { HomeComponent } from './pages/home/home.component';
+
+import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 
 
@@ -51,6 +57,8 @@ import { LoginComponent } from './login/login.component';
     LoginComponent,
   ],
   imports: [
+    HttpClientModule,
+    HttpModule,
     MatDialogModule,
     MatRadioModule,
     MatSelectModule,
@@ -72,23 +80,33 @@ import { LoginComponent } from './login/login.component';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    AngularFireAuthModule,
     RouterModule.forRoot([
       {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
+        canActivate: [AuthGuardService]
+      },
+      {
+        path: 'login',
+        component: LoginComponent,
       },
       {
         path: 'courses/:id',
         component: CoursesComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: 'courses',
-        component: CoursesComponent
+        component: CoursesComponent,
+        canActivate: [AuthGuardService]
       },
     ])
   ],
   providers: [
+    AuthGuardService,
     CoursesService,
+    AuthenticationService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [ChooseCcoursesStructureFormComponent],
