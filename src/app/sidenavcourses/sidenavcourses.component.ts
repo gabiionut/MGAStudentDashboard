@@ -20,6 +20,7 @@ export class SidenavcoursesComponent {
     public coursesService: CoursesService,
     ) {
     this.courses$ = this.coursesService.getAll().valueChanges();
+    this.courses$.subscribe(res => console.log(res));
    }
 
   openDialog() {
@@ -27,10 +28,10 @@ export class SidenavcoursesComponent {
     width: '250px'
   });
   }
-  openDialogEdit(id) {
+  openDialogEdit(course) {
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
-      data: id
+      data: course
     });
   }
 }

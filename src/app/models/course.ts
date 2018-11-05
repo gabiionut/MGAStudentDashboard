@@ -1,4 +1,5 @@
 export class Course {
+    key: string;
     nume: string;
     curs: boolean;
     laborator: boolean;

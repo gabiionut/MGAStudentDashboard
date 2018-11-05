@@ -13,7 +13,11 @@ export class CoursesService {
   constructor(public db: AngularFireDatabase, public snackBar: MatSnackBar) { }
 
   create(course) {
-    this.db.list('/courses').push(course).then(res => this.snackBar.open('Curs adaugat! ✔️', null, {duration: 2000}));
+    this.db.list('/courses').push(course).then(res => {
+      this.snackBar.open('Curs adaugat! ✔️', null, {duration: 2000});
+      const key = res.key;
+      console.log(res.key);
+    });
   }
 
   getAll(): AngularFireList<Course> {
