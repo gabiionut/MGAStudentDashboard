@@ -1,3 +1,4 @@
+import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { Component } from '@angular/core';
@@ -10,11 +11,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Student DashBoard';
 
-  constructor(private authService: AuthenticationService, private route: Router) {
-    if (!this.authService.user$) {
-      this.route.navigate(['/login']);
-    } else {
-      this.route.navigate(['/']);
-    }
+  constructor(private authService: AuthenticationService, private route: Router, private userService: UserService) {
+
+    this.authService.user$.subscribe(user => {
+      if (user) {
+        this.userService.save(user);
+        this.route.navigate(['/']);
+      } else {
+        this.route.navigate(['/login']);
+      }
+    });
   }
 }
