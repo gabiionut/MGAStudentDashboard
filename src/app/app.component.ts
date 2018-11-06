@@ -2,6 +2,7 @@ import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './services/authentication.service';
 import { Component } from '@angular/core';
+import { User } from './models/user.model';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Student DashBoard';
+  currentUser: User;
 
   constructor(private authService: AuthenticationService, private route: Router, private userService: UserService) {
 
