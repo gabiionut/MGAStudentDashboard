@@ -19,6 +19,7 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
   id;
   course: Course = new Course();
   currentUser: User;
+  currentUserUid: string;
 
   constructor(
     public dialogRef: MatDialogRef<ChooseCcoursesStructureFormComponent>,
@@ -32,17 +33,19 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCurrentUserProfile().valueChanges().subscribe((res: User) => this.currentUser = res);
+    this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
+      this.currentUser = res;
+    });
 
   }
 
   getCurrentUserProfile() {
-    const currentUserUid = this.angularFireAuth.auth.currentUser.uid;
-    return this.angularFireDatabase.object(`users/${currentUserUid}`);
+    this.currentUserUid = this.angularFireAuth.auth.currentUser.uid;
+    return this.angularFireDatabase.object(`users/${this.currentUserUid}`);
 }
 
   add(course) {
-
+    console.log(this.currentUser);
     this.coursesService.create(course, this.currentUser.ui);
     this.dialogRef.close();
   }
