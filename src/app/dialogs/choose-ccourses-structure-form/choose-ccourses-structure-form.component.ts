@@ -32,13 +32,6 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.data) {
-      this.course = this.data;
-      this.id = this.data.nume;
-    }
-    console.log(this.course);
-    // this.course = this.data;
-    // this.id = this.data.nume;
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => this.currentUser = res);
 
   }

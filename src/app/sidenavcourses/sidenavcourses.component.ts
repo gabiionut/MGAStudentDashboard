@@ -50,16 +50,12 @@ export class SidenavcoursesComponent implements OnInit {
     return this.angularFireDatabase.object(`users/${currentUserUid}`);
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
-      width: '250px'
-    });
-  }
-  openDialogEdit(course) {
-    console.log(course.$key);
+  openDialog(course?: Course) {
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
-      data: course
     });
+    if (course) {
+      dialogRef.componentInstance.course = course;
+    }
   }
 }
