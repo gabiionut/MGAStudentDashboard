@@ -58,4 +58,12 @@ export class SidenavcoursesComponent implements OnInit {
       dialogRef.componentInstance.course = course;
     }
   }
+
+  delete(cours: Course) {
+    console.log(cours);
+    this.coursesService.delete(cours.$key, this.currentUser.ui).then(res => {
+      console.log('apelat');
+    });
+  }
+
 }

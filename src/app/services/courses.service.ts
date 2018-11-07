@@ -32,4 +32,9 @@ export class CoursesService {
   update(courseName, course) {
     return this.db.object('/courses/' + courseName).update(course);
   }
+
+  delete(courseKey, userKey) {
+    console.log(courseKey);
+    return this.db.object(`/users/${userKey}/courses/${userKey}`).remove();
+  }
 }
