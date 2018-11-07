@@ -14,18 +14,15 @@ export class CoursesService {
 
   create(course, ui) {
 
-     let key: string;
-
     this.db.list(`/users/${ui}/courses`).push(course).then(res => {
       this.snackBar.open('Curs adaugat! ✔️', null, {duration: 2000});
-      key = res.key;
-      console.log(res.key);
+
     });
 
   }
 
-  getAll(): AngularFireList<Course> {
-    return this.db.list('/courses');
+  getAll(ui): AngularFireList<Course> {
+    return this.db.list(`/users/${ui}/courses`);
   }
 
   get(courseName): AngularFireObject<Course> {
