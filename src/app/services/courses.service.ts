@@ -34,7 +34,6 @@ export class CoursesService {
   }
 
   delete(courseKey, userKey) {
-    console.log(courseKey);
-    return this.db.object(`/users/${userKey}/courses/${userKey}`).remove();
+    return this.db.object(`/users/${userKey}/courses/${courseKey}`).remove();
   }
 }
