@@ -37,7 +37,7 @@ export class SidenavcoursesComponent implements OnInit {
           list => {
             this.courses = list.map(item => {
               return {
-                $key: item.key,
+                key: item.key,
                 ...item.payload.val()
               };
             });
@@ -56,6 +56,7 @@ export class SidenavcoursesComponent implements OnInit {
     });
     if (course) {
       dialogRef.componentInstance.course = course;
+      dialogRef.componentInstance.isNew = false;
     }
   }
 

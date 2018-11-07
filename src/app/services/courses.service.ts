@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList, AngularFireObject } from 'angular
 import { Course } from '../models/course.model';
 import { MatSnackBar } from '@angular/material';
 import {Observable} from 'rxjs/Observable';
+import { User } from '../models/user.model';
 
 
 @Injectable({
@@ -29,8 +30,9 @@ export class CoursesService {
     return this.db.object('/courses/' + courseName);
   }
 
-  update(courseName, course) {
-    return this.db.object('/courses/' + courseName).update(course);
+  update(courseId: string, userId: string, course: Course) {
+    console.log(course, userId);
+    this.db.object(`/users/${userId}/courses/${courseId}`).update(course);
   }
 
   delete(courseKey, userKey) {

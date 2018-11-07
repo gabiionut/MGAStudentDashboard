@@ -20,6 +20,7 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
   course: Course = new Course();
   currentUser: User;
   currentUserUid: string;
+  isNew = true;
 
   constructor(
     public dialogRef: MatDialogRef<ChooseCcoursesStructureFormComponent>,
@@ -48,6 +49,10 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
     console.log(this.currentUser);
     this.coursesService.create(course, this.currentUser.ui);
     this.dialogRef.close();
+  }
+
+  update() {
+    this.coursesService.update(this.course.$key, this.currentUser.ui, this.course);
   }
 
   closeDialog(): void {
