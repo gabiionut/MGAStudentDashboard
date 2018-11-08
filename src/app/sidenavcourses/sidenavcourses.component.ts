@@ -20,8 +20,9 @@ export class SidenavcoursesComponent implements OnInit {
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
+  course?;
 
-  constructor(
+    constructor(
     public dialog: MatDialog,
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
@@ -54,15 +55,16 @@ export class SidenavcoursesComponent implements OnInit {
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
     });
+
     if (course) {
       dialogRef.componentInstance.course = course;
       dialogRef.componentInstance.isNew = false;
     }
   }
 
+
   delete(cours: Course) {
-    console.log(cours);
-    this.coursesService.delete(cours.$key, this.currentUser.ui);
+    this.coursesService.delete(cours.key, this.currentUser.ui);
   }
 
 }

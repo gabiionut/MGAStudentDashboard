@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from './../../services/courses.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { stringify } from '@angular/core/src/render3/util';
 import { Course } from 'src/app/models/course.model';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from 'src/app/models/user.model';
@@ -16,11 +15,12 @@ import { User } from 'src/app/models/user.model';
 })
 export class ChooseCcoursesStructureFormComponent implements OnInit {
 
-  id;
+
   course: Course = new Course();
   currentUser: User;
   currentUserUid: string;
   isNew = true;
+
 
   constructor(
     public dialogRef: MatDialogRef<ChooseCcoursesStructureFormComponent>,
@@ -46,13 +46,13 @@ export class ChooseCcoursesStructureFormComponent implements OnInit {
 }
 
   add(course) {
-    console.log(this.currentUser);
     this.coursesService.create(course, this.currentUser.ui);
     this.dialogRef.close();
   }
 
   update() {
-    this.coursesService.update(this.course.$key, this.currentUser.ui, this.course);
+    this.coursesService.update(this.course.key, this.currentUser.ui, this.course);
+    this.dialogRef.close();
   }
 
   closeDialog(): void {

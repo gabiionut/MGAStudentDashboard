@@ -1,5 +1,5 @@
 export class Course {
-    $key: string;
+    key: string;
     nume: string;
     curs: boolean;
     laborator: boolean;

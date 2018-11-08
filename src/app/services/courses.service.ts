@@ -31,7 +31,6 @@ export class CoursesService {
   }
 
   update(courseId: string, userId: string, course: Course) {
-    console.log(course, userId);
     this.db.object(`/users/${userId}/courses/${courseId}`).update(course);
   }
 
