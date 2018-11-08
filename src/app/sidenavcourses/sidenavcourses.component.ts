@@ -21,7 +21,10 @@ export class SidenavcoursesComponent implements OnInit {
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
+<<<<<<< .merge_file_a14224
   course?;
+=======
+>>>>>>> .merge_file_a12640
 
     constructor(
     public dialog: MatDialog,
@@ -63,9 +66,17 @@ export class SidenavcoursesComponent implements OnInit {
     }
   }
 
+<<<<<<< .merge_file_a14224
   openDeleteDialog() {
     const dialogRef = this.dialog.open(CourseDeleteComponent, {
       width: '250px',
     });
+=======
+  openDeleteDialog(course) {
+    const dialogRef = this.dialog.open(CourseDeleteComponent, {
+      width: '250px',
+    });
+    dialogRef.componentInstance.course  = course;
+>>>>>>> .merge_file_a12640
   }
 }

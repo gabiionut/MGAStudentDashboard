@@ -17,10 +17,9 @@ export class CourseDeleteComponent implements OnInit  {
   dialog: MatDialog;
   currentUser: User;
   currentUserUid: string;
-
+  course: Course;
   constructor(
     public dialogRef: MatDialogRef<CourseDeleteComponent>,
-    @Inject(MAT_DIALOG_DATA)
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase
@@ -42,8 +41,14 @@ export class CourseDeleteComponent implements OnInit  {
     this.dialogRef.close();
   }
 
+<<<<<<< .merge_file_a06588
   delete(cours: Course) {
     this.coursesService.delete(cours.key, this.currentUser.ui);
+=======
+  delete() {
+    console.log(this.currentUser.ui);
+    this.coursesService.delete(this.course.key, this.currentUser.ui);
+>>>>>>> .merge_file_a17948
     this.dialogRef.close();
   }
 
