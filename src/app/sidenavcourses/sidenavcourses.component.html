@@ -15,11 +15,11 @@
                 <mat-menu #menu="matMenu">
                   <button mat-menu-item [routerLink]="['/courses/',c.nume]" (click)="openDialog(c)">
                     <mat-icon>edit</mat-icon>
-                    <span>Edit</span>
+                    <span>Editeaza</span>
                   </button>
-                  <button mat-menu-item (click)="delete(c)"> 
+                  <button mat-menu-item (click)="openDeleteDialog()"> 
                       <mat-icon>delete</mat-icon>
-                      <span>Delete</span>
+                      <span>Sterge</span>
                     </button>
                   </mat-menu>
                 </span>

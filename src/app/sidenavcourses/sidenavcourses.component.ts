@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../models/user.model';
+import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 
 @Component({
   selector: 'app-sidenavcourses',
@@ -62,9 +63,9 @@ export class SidenavcoursesComponent implements OnInit {
     }
   }
 
-
-  delete(cours: Course) {
-    this.coursesService.delete(cours.key, this.currentUser.ui);
+  openDeleteDialog() {
+    const dialogRef = this.dialog.open(CourseDeleteComponent, {
+      width: '250px',
+    });
   }
-
 }

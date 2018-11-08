@@ -44,6 +44,7 @@ import { HomeComponent } from './pages/home/home.component';
 
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
+import { CourseDeleteComponent } from './message-alert/course-delete/course-delete.component';
 
 
 @NgModule({
@@ -56,6 +57,7 @@ import { LoginComponent } from './login/login.component';
     HomeComponent,
     ChooseCcoursesStructureFormComponent,
     LoginComponent,
+    CourseDeleteComponent,
   ],
   imports: [
     HttpClientModule,
@@ -111,6 +113,9 @@ import { LoginComponent } from './login/login.component';
     UserService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ChooseCcoursesStructureFormComponent],
+  entryComponents: [
+    ChooseCcoursesStructureFormComponent,
+    CourseDeleteComponent
+  ],
 })
 export class AppModule { }
