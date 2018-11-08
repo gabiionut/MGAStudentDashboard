@@ -13,6 +13,7 @@ import { User } from 'src/app/models/user.model';
 })
 export class CourseDeleteComponent implements OnInit  {
 
+  course: Course = new Course();
   dialog: MatDialog;
   currentUser: User;
   currentUserUid: string;
@@ -42,7 +43,6 @@ export class CourseDeleteComponent implements OnInit  {
   }
 
   delete(cours: Course) {
-    console.log(this.currentUser.ui);
     this.coursesService.delete(cours.key, this.currentUser.ui);
     this.dialogRef.close();
   }
