@@ -21,7 +21,6 @@ export class SidenavcoursesComponent implements OnInit {
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
-  course?;
 
     constructor(
     public dialog: MatDialog,
@@ -63,9 +62,10 @@ export class SidenavcoursesComponent implements OnInit {
     }
   }
 
-  openDeleteDialog() {
+  openDeleteDialog(course) {
     const dialogRef = this.dialog.open(CourseDeleteComponent, {
       width: '250px',
     });
+    dialogRef.componentInstance.course  = course;
   }
 }
