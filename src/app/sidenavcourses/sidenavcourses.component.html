@@ -1,9 +1,8 @@
 <mat-drawer-container class="example-container">
   <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
     <button mat-button (click)="openDialog()">Adauga curs</button>
-    <div *ngFor="let c of courses" (contextmenu)="onContextMenu($event, item)">
       <mat-accordion>
-        <mat-expansion-panel>
+        <mat-expansion-panel *ngFor="let c of courses" (contextmenu)="onContextMenu($event, c)">
           <mat-expansion-panel-header>
             <mat-panel-title>
               {{c.nume}}
@@ -20,7 +19,6 @@
           </mat-list>
         </mat-expansion-panel>
       </mat-accordion>
-    </div>
     <mat-menu #contextMenu="matMenu">
       <ng-template matMenuContent let-item="item">
         <button mat-menu-item [routerLink]="['/courses/',item.nume]" (click)="openDialog(item)">
