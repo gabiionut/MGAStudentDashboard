@@ -16,11 +16,13 @@ import { CourseDeleteComponent } from '../message-alert/course-delete/course-del
 })
 export class SidenavcoursesComponent implements OnInit {
 
-  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
   course?;
+  contextMenuPosition = { x: '0px', y: '0px' };
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
     constructor(
     public dialog: MatDialog,
@@ -52,6 +54,7 @@ export class SidenavcoursesComponent implements OnInit {
   }
 
   openDialog(course?: Course) {
+    console.log(course);
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
     });
@@ -68,9 +71,13 @@ export class SidenavcoursesComponent implements OnInit {
     });
   }
 
-  onRightClick() {
-    this.trigger.openMenu();
-    return false;
+  onContextMenu(event: MouseEvent, item: Course) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = { 'item': item };
+    console.log(item);
+    this.contextMenu.openMenu();
   }
 
 }

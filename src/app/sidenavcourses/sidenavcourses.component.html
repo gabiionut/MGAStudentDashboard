@@ -1,37 +1,38 @@
 <mat-drawer-container class="example-container">
-    <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
-        <button  mat-button (click)="openDialog()">Adauga curs</button>  
-      <div *ngFor="let c of courses">
-        <mat-accordion >
-          <mat-expansion-panel (contextmenu)="onRightClick()">
-            <mat-expansion-panel-header>
-              <mat-panel-title>
+  <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
+    <button mat-button (click)="openDialog()">Adauga curs</button>
+    <div *ngFor="let c of courses" (contextmenu)="onContextMenu($event, item)">
+      <mat-accordion>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
               {{c.nume}}
-              </mat-panel-title>
-              <span [matMenuTriggerFor]="contextMenu">
-                <mat-menu #contextMenu ="matMenu">
-                  <button mat-menu-item [routerLink]="['/courses/',c.nume]" (click)="openDialog(c)">
-                    <mat-icon>edit</mat-icon>
-                    <span>Editeaza</span>
-                  </button>
-                  <button mat-menu-item (click)="openDeleteDialog(c)"> 
-                      <mat-icon>delete</mat-icon>
-                      <span>Sterge</span>
-                    </button>
-                  </mat-menu>
-                </span>
-            </mat-expansion-panel-header>
-            <mat-list role="list">
+            </mat-panel-title>
+            <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
+              [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: c}">
+            </div>
+          </mat-expansion-panel-header>
+          <mat-list role="list">
             <mat-list-item role="listitem" *ngIf="c.curs">Curs</mat-list-item>
             <mat-list-item role="listitem" *ngIf="c.laborator">Laborator</mat-list-item>
             <mat-list-item role="listitem" *ngIf="c.seminar">Seminar</mat-list-item>
             <mat-list-item role="listitem" *ngIf="c.proiect">Proiect</mat-list-item>
-            </mat-list>
-          </mat-expansion-panel>
-        </mat-accordion>
-      </div>
-    </mat-drawer>
-    <mat-drawer-content>Main content</mat-drawer-content>
-  </mat-drawer-container>
-
-  
+          </mat-list>
+        </mat-expansion-panel>
+      </mat-accordion>
+    </div>
+    <mat-menu #contextMenu="matMenu">
+      <ng-template matMenuContent let-item="item">
+        <button mat-menu-item [routerLink]="['/courses/',item.nume]" (click)="openDialog(item)">
+          <mat-icon>edit</mat-icon>
+          <span>Editeaza</span>
+        </button>
+        <button mat-menu-item (click)="openDeleteDialog(item)">
+          <mat-icon>delete</mat-icon>
+          <span>Sterge</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </mat-drawer>
+  <mat-drawer-content>Main content</mat-drawer-content>
+</mat-drawer-container>
