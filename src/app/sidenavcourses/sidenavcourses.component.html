@@ -2,8 +2,8 @@
   <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
     <button mat-button (click)="openDialog()">Adauga curs</button>
       <mat-accordion>
-        <mat-expansion-panel *ngFor="let c of courses" (contextmenu)="onContextMenu($event, c)">
-          <mat-expansion-panel-header>
+        <mat-expansion-panel *ngFor="let c of courses">
+          <mat-expansion-panel-header (contextmenu)="onContextMenu($event, c)">
             <mat-panel-title>
               {{c.nume}}
             </mat-panel-title>

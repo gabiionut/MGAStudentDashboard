@@ -41,8 +41,8 @@ export class CourseDeleteComponent implements OnInit  {
     this.dialogRef.close();
   }
 
-  delete(cours: Course) {
-    this.coursesService.delete(cours.key, this.currentUser.ui);
+  delete() {
+    this.coursesService.delete(this.course.key, this.currentUser.ui);
     this.dialogRef.close();
   }
 
