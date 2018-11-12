@@ -54,7 +54,6 @@ export class SidenavcoursesComponent implements OnInit {
   }
 
   openDialog(course?: Course) {
-    console.log(course);
     const dialogRef = this.dialog.open(ChooseCcoursesStructureFormComponent, {
       width: '250px',
     });
@@ -76,7 +75,6 @@ export class SidenavcoursesComponent implements OnInit {
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = { 'item': item };
-    console.log(item);
     this.contextMenu.openMenu();
   }
 
