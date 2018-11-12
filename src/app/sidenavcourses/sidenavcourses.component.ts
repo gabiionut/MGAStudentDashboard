@@ -1,8 +1,8 @@
 import { CoursesService } from './../services/courses.service';
 import { Course } from '../models/course.model';
 import { ChooseCcoursesStructureFormComponent } from './../dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatMenuTrigger } from '@angular/material';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -16,8 +16,7 @@ import { CourseDeleteComponent } from '../message-alert/course-delete/course-del
 })
 export class SidenavcoursesComponent implements OnInit {
 
-  isDisabled = false;
-
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
@@ -68,4 +67,10 @@ export class SidenavcoursesComponent implements OnInit {
       width: '250px',
     });
   }
+
+  onRightClick() {
+    this.trigger.openMenu();
+    return false;
+  }
+
 }

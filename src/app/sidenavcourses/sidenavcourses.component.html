@@ -3,25 +3,18 @@
         <button  mat-button (click)="openDialog()">Adauga curs</button>  
       <div *ngFor="let c of courses">
         <mat-accordion >
-          <mat-expansion-panel [disabled]="isDisabled">
+          <mat-expansion-panel (contextmenu)="onRightClick()">
             <mat-expansion-panel-header>
               <mat-panel-title>
               {{c.nume}}
               </mat-panel-title>
-              <span >
-                <button mat-icon-button [matMenuTriggerFor]="menu">
-                  <mat-icon>more_vert</mat-icon>
-                </button>
-                <mat-menu #menu="matMenu">
+              <span [matMenuTriggerFor]="contextMenu">
+                <mat-menu #contextMenu ="matMenu">
                   <button mat-menu-item [routerLink]="['/courses/',c.nume]" (click)="openDialog(c)">
                     <mat-icon>edit</mat-icon>
                     <span>Editeaza</span>
                   </button>
-<<<<<<< .merge_file_a11804
-                  <button mat-menu-item (click)="openDeleteDialog()"> 
-=======
                   <button mat-menu-item (click)="openDeleteDialog(c)"> 
->>>>>>> .merge_file_a18664
                       <mat-icon>delete</mat-icon>
                       <span>Sterge</span>
                     </button>
