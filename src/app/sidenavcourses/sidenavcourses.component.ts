@@ -64,10 +64,11 @@ export class SidenavcoursesComponent implements OnInit {
     }
   }
 
-  openDeleteDialog() {
+  openDeleteDialog(course: Course) {
     const dialogRef = this.dialog.open(CourseDeleteComponent, {
       width: '250px',
     });
+    dialogRef.componentInstance.course = course;
   }
 
   onContextMenu(event: MouseEvent, item: Course) {
