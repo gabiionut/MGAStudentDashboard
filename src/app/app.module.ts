@@ -45,6 +45,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 import { CourseDeleteComponent } from './message-alert/course-delete/course-delete.component';
+import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { UploadService } from './services/upload.service';
 
 
 @NgModule({
@@ -58,6 +60,7 @@ import { CourseDeleteComponent } from './message-alert/course-delete/course-dele
     ChooseCcoursesStructureFormComponent,
     LoginComponent,
     CourseDeleteComponent,
+    UploadFilesComponent,
   ],
   imports: [
     HttpClientModule,
@@ -111,6 +114,7 @@ import { CourseDeleteComponent } from './message-alert/course-delete/course-dele
     CoursesService,
     AuthenticationService,
     UserService,
+    UploadService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
