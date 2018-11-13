@@ -1,3 +1,4 @@
+import { User } from './../models/user.model';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
@@ -5,20 +6,20 @@ import { Injectable} from '@angular/core';
 import { UploadFile } from '../models/upload-file';
 import * as firebase from 'firebase';
 import 'firebase/storage';
+
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
 
   constructor(private af: AngularFireAuth, private db: AngularFireDatabase) { }
+  private basePath = 'uploads';
 
-  private basePath = '/uploads';
-  uploads$: Observable<UploadFile[]>;
 
-  pushUpload(upload: UploadFile, userId, courseKey) {
+  pushUpload(upload: UploadFile, userId, courseKey, userName) {
 
     const storageRef = firebase.storage().ref();
-    const uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
+    const uploadTask = storageRef.child(`${userName}/${this.basePath}/${upload.file.name}`).put(upload.file);
 
       uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
         (snapshot) => {

@@ -57,6 +57,6 @@ export class UploadFilesComponent implements OnInit {
     uploadSingleFile() {
       const file = this.selectedFiles.item(0);
       this.currentUpload = new UploadFile(file);
-      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key);
+      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name);
     }
 }
