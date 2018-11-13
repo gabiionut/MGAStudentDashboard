@@ -13,7 +13,7 @@ export class AppComponent {
   title = 'Student DashBoard';
   currentUser: User;
 
-  constructor(private authService: AuthenticationService, private route: Router, private userService: UserService) {
+  constructor(public authService: AuthenticationService, private route: Router, private userService: UserService) {
 
     this.authService.user$.subscribe(user => {
       if (user) {

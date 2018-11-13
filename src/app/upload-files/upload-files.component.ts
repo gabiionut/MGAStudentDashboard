@@ -1,5 +1,5 @@
 import { CoursesService } from 'src/app/services/courses.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { User } from '../models/user.model';
 import { Course } from '../models/course.model';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -14,10 +14,10 @@ import { UploadService } from '../services/upload.service';
 })
 export class UploadFilesComponent implements OnInit {
 
-  course: Course = new Course();
-  currentUser: User;
-  currentUserUid: string;
   courses: Course[];
+  @Input() currentUser: User;
+  @Input() course: Course;
+  @Input() courseType: string;
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
@@ -30,25 +30,7 @@ export class UploadFilesComponent implements OnInit {
   ) { }
 
     ngOnInit() {
-      this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
-        this.currentUser = res;
-        this.coursesService.getAll(this.currentUser.ui).snapshotChanges()
-          .subscribe(
-            list => {
-              this.courses = list.map(item => {
-                return {
-                  key: item.key,
-                  ...item.payload.val()
-                };
-              });
-            });
-      });
-
-  }
-    getCurrentUserProfile() {
-      this.currentUserUid = this.angularFireAuth.auth.currentUser.uid;
-      return this.angularFireDatabase.object(`users/${this.currentUserUid}`);
-  }
+    }
 
     detectFiles(event) {
       this.selectedFiles = event.target.files;
@@ -57,6 +39,6 @@ export class UploadFilesComponent implements OnInit {
     uploadSingleFile() {
       const file = this.selectedFiles.item(0);
       this.currentUpload = new UploadFile(file);
-      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name);
+      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType);
     }
 }

@@ -8,6 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../models/user.model';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenavcourses',
@@ -20,15 +21,18 @@ export class SidenavcoursesComponent implements OnInit {
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
-  course?;
+  course: Course;
+  courseType: string;
   contextMenuPosition = { x: '0px', y: '0px' };
+  courseTypeSelected = false;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
     constructor(
     public dialog: MatDialog,
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
-    private angularFireDatabase: AngularFireDatabase
+    private angularFireDatabase: AngularFireDatabase,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -77,6 +81,12 @@ export class SidenavcoursesComponent implements OnInit {
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = { 'item': item };
     this.contextMenu.openMenu();
+  }
+
+  onCourseTypeClick(course: Course, courseType: string) {
+    this.courseTypeSelected = true;
+    this.course = course;
+    this.courseType = courseType;
   }
 
 }
