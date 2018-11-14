@@ -17,7 +17,6 @@ export class CoursesService {
 
     this.db.list(`/users/${ui}/courses`).push(course).then(res => {
       this.snackBar.open('Curs adaugat! ✔️', null, {duration: 2000});
-
     });
 
   }

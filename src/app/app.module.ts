@@ -22,7 +22,7 @@ import { SidenavcoursesComponent } from './sidenavcourses/sidenavcourses.compone
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChooseCcoursesStructureFormComponent } from './dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
 
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material';
@@ -63,6 +63,7 @@ import { UploadService } from './services/upload.service';
     UploadFilesComponent,
   ],
   imports: [
+    MatProgressBarModule,
     HttpClientModule,
     HttpModule,
     MatDialogModule,

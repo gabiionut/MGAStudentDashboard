@@ -1,5 +1,5 @@
 <label>
-  <input mat-button type="file" (change)="detectFiles($event)">
+  <input #inputFile type="file" (change)="detectFiles($event)">
 </label>
 
 <button
@@ -8,3 +8,7 @@
 
  Upload Single
 </button>
+<mat-progress-bar *ngIf="selectedFiles" 
+  mode="determinate" 
+  value="{{progress.percentage}}">
+</mat-progress-bar>
