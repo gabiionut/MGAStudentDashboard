@@ -19,6 +19,7 @@ export class UploadFilesComponent implements OnInit {
   @Input() currentUser: User;
   @Input() course: Course;
   @Input() courseType: string;
+  @Input() fileUpload: any[];
   @ViewChild('inputFile') inputFile: ElementRef;
 
   selectedFiles: FileList;
@@ -46,4 +47,5 @@ export class UploadFilesComponent implements OnInit {
     reset() {
       this.inputFile.nativeElement.value = '';
   }
+
 }

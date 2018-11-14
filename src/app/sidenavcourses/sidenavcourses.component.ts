@@ -1,3 +1,4 @@
+import { UploadService } from './../services/upload.service';
 import { CoursesService } from './../services/courses.service';
 import { Course } from '../models/course.model';
 import { ChooseCcoursesStructureFormComponent } from './../dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
@@ -25,6 +26,7 @@ export class SidenavcoursesComponent implements OnInit {
   courseType: string;
   contextMenuPosition = { x: '0px', y: '0px' };
   courseTypeSelected = false;
+  fileUpload: any[];
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
     constructor(
@@ -32,7 +34,8 @@ export class SidenavcoursesComponent implements OnInit {
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase,
-    private router: Router
+    private router: Router,
+    private upService: UploadService,
   ) { }
 
   ngOnInit() {
@@ -87,6 +90,14 @@ export class SidenavcoursesComponent implements OnInit {
     this.courseTypeSelected = true;
     this.course = course;
     this.courseType = courseType;
-  }
 
+    this.getUploadFile();
+  }
+  getUploadFile() {
+    this.upService.getUpload(this.currentUser.ui, this.course.key, this.courseType).valueChanges()
+      .subscribe(fileUpload => {
+        this.fileUpload = fileUpload;
+        console.log(this.fileUpload);
+      });
+  }
 }

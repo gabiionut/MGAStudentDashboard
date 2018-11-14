@@ -49,4 +49,9 @@ export class UploadService {
       this.snackBar.open('Fisier adaugat! ✔️', null, {duration: 2000});
     });
   }
+
+  getUpload(userId: string, courseKey: string, courseType: string): AngularFireList<UploadFile> {
+    return this.db.list(`users/${userId}/courses/${courseKey}/files/${courseType}Files`);
+  }
+
 }

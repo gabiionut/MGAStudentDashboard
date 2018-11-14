@@ -1,0 +1,22 @@
+.file-card-display {
+    margin-left: 2%;
+    margin-top: 2%;
+}
+
+.file-card {
+    max-width: 70px;
+    max-height: 70px;
+}
+
+p{
+    font-size: 10px;
+}
+.mat-card-image {
+max-height: 50px;
+}
+
+.mat-card-content {
+    font-weight:bold; 
+     max-height: 20px;
+    overflow: hidden;
+}

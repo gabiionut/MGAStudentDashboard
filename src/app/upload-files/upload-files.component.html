@@ -12,3 +12,14 @@
   mode="determinate" 
   value="{{progress.percentage}}">
 </mat-progress-bar>
+
+<div class="file-card-display " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="10px">
+    <mat-card class="file-card"  *ngFor="let file of fileUpload">
+      <img mat-card-image src="https://www.materialui.co/materialIcons/editor/insert_drive_file_grey_192x192.png">
+      <mat-card-content>
+          <p class="fileName">
+            {{file.name}}
+          </p>
+        </mat-card-content>
+    </mat-card>
+</div>

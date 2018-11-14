@@ -32,7 +32,7 @@
     </mat-menu>
   </mat-drawer>
   <mat-drawer-content>
-    <app-upload-files *ngIf="courseTypeSelected" [currentUser]="currentUser" [course]="course" [courseType]="courseType" ></app-upload-files>
+    <app-upload-files *ngIf="courseTypeSelected" [currentUser]="currentUser" [course]="course" [courseType]="courseType" [fileUpload]="fileUpload" ></app-upload-files>
     <h1 *ngIf="!courseTypeSelected">Main Content</h1>
   </mat-drawer-content>
 </mat-drawer-container>
