@@ -27,7 +27,7 @@ export class UploadFilesComponent implements OnInit {
   currentUpload: UploadFile;
   progress: { percentage: number } = {percentage: 0};
   constructor(
-    private upService: UploadService,
+    public upService: UploadService,
 
   ) { }
 
@@ -40,7 +40,7 @@ export class UploadFilesComponent implements OnInit {
 
     uploadFiles() {
       const file = this.selectedFiles;
-      const filesIndex = _.range(file.length)
+      const filesIndex = _.range(file.length);
       _.each(filesIndex, (idx) => {
           this.currentUpload = new UploadFile(file[idx]);
           this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType,

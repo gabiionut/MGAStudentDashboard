@@ -1,22 +1,14 @@
 .file-card-display {
-    margin-left: 2%;
-    margin-top: 2%;
+    margin: 10px !important;
 }
 
-.file-card {
-    max-width: 70px;
-    max-height: 70px;
+mat-card {
+    margin-top: 10px !important;
 }
 
-p{
-    font-size: 10px;
-}
-.mat-card-image {
-max-height: 50px;
-}
-
-.mat-card-content {
-    font-weight:bold; 
-     max-height: 20px;
+.mat-card-title {
+    font-weight:bold;
+    font-size: 20px; 
+    max-height: 45px;
     overflow: hidden;
 }

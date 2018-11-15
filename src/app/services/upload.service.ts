@@ -13,10 +13,11 @@ export class UploadService {
 
   constructor(private af: AngularFireAuth, private db: AngularFireDatabase, public snackBar: MatSnackBar) { }
   private basePath = 'uploads';
+  public uploadFinished = false;
 
 
   pushUpload(upload: UploadFile, userId, courseKey, userName, courseType, progress: { percentage: number }) {
-
+    this.uploadFinished = true;
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${userName}/${this.basePath}/${upload.file.name}`).put(upload.file);
 
@@ -38,7 +39,7 @@ export class UploadService {
             date: new Date()
           };
           this.saveFileData(databaseFile, userId, courseKey, courseType);
-
+          this.uploadFinished = false;
         });
       }
     );
