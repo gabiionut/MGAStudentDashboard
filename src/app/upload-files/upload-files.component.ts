@@ -7,7 +7,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { UploadFile } from '../models/upload-file';
 import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
-
+import * as _ from 'lodash';
 @Component({
   selector: 'app-upload-files',
   templateUrl: './upload-files.component.html',
@@ -21,6 +21,7 @@ export class UploadFilesComponent implements OnInit {
   @Input() courseType: string;
   @Input() fileUpload: any[];
   @ViewChild('inputFile') inputFile: ElementRef;
+
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
@@ -37,15 +38,17 @@ export class UploadFilesComponent implements OnInit {
       this.selectedFiles = event.target.files;
     }
 
-    uploadSingleFile() {
-      const file = this.selectedFiles.item(0);
-      this.currentUpload = new UploadFile(file);
-      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType,
-         this.progress);
-      this.reset();
+    uploadFiles() {
+      const file = this.selectedFiles;
+      const filesIndex = _.range(file.length)
+      _.each(filesIndex, (idx) => {
+          this.currentUpload = new UploadFile(file[idx]);
+          this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType,
+            this.progress);
+        });
+        this.reset();
     }
     reset() {
       this.inputFile.nativeElement.value = '';
   }
-
 }

@@ -1,20 +1,28 @@
 <label>
-  <input #inputFile type="file" (change)="detectFiles($event)">
+  <input #inputFile type="file" (change)="detectFiles($event)" multiple>
 </label>
 
 <button
-       [disabled]="!selectedFiles"
-       (click)="uploadSingleFile()">
+      [disabled]="!selectedFiles"
+      (click)="uploadFiles()">
 
- Upload Single
+ Upload Files
 </button>
-<mat-progress-bar *ngIf="selectedFiles" 
+<mat-progress-bar
   mode="determinate" 
   value="{{progress.percentage}}">
 </mat-progress-bar>
 
-<div class="file-card-display " fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="10px">
-    <mat-card class="file-card"  *ngFor="let file of fileUpload">
+<div class="file-card-display " 
+     fxLayout="row wrap" 
+     fxLayout.lt-sm="column" 
+     fxLayoutWrap fxLayoutGap="10px"
+     fxLayoutAlign="flex-start">
+    <mat-card  class="file-card"  
+      *ngFor="let file of fileUpload"
+      xFlex="0 1 calc(33.3% - 10px)"
+      fxFlex.lt-md="0 1 calc(50% - 32px)"
+      fxFlex.lt-sm="100%">
       <img mat-card-image src="https://www.materialui.co/materialIcons/editor/insert_drive_file_grey_192x192.png">
       <mat-card-content>
           <p class="fileName">

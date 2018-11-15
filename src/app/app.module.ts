@@ -40,10 +40,11 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCardModule} from '@angular/material/card';
+import * as _ from 'lodash';
+
 
 import { CoursesComponent } from './pages/courses/courses.component';
 import { HomeComponent } from './pages/home/home.component';
-
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 import { CourseDeleteComponent } from './message-alert/course-delete/course-delete.component';
