@@ -34,8 +34,8 @@
      fxLayoutAlign="space-around start"
      fxLayout.lt-sm="column" 
      fxLayoutGap="10px">
-    <mat-card *ngFor="let file of fileUpload" class="example-card" style="width: 150px; margin-top: 15px !important;">
-  <img mat-card-image src="https://www.hyperwave.com/wp-content/uploads/2015/08/product-document-management-300x300.png" >
+    <mat-card *ngFor="let file of fileUpload" class="example-card" style="width: 150px; margin-top: 15px !important;" (click)="openDownloadFile(file.url)">
+    <img mat-card-image src="https://www.hyperwave.com/wp-content/uploads/2015/08/product-document-management-300x300.png" >
   <mat-card-title>{{file.name}}</mat-card-title>
 </mat-card>
 </div>

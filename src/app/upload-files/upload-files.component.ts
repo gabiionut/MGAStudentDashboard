@@ -1,13 +1,12 @@
-import { CoursesService } from 'src/app/services/courses.service';
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { User } from '../models/user.model';
 import { Course } from '../models/course.model';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
 import { UploadFile } from '../models/upload-file';
 import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
 import * as _ from 'lodash';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-upload-files',
   templateUrl: './upload-files.component.html',
@@ -28,7 +27,7 @@ export class UploadFilesComponent implements OnInit {
   progress: { percentage: number } = {percentage: 0};
   constructor(
     public upService: UploadService,
-
+    public router: Router,
   ) { }
 
     ngOnInit() {
@@ -50,5 +49,8 @@ export class UploadFilesComponent implements OnInit {
     }
     reset() {
       this.inputFile.nativeElement.value = '';
+  }
+  openDownloadFile(url: string) {
+    window.open(url, '_blank');
   }
 }
