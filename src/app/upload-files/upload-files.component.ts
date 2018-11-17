@@ -6,6 +6,7 @@ import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
+import { MatMenuTrigger } from '@angular/material';
 
 @Component({
   selector: 'app-upload-files',
@@ -20,37 +21,49 @@ export class UploadFilesComponent implements OnInit {
   @Input() courseType: string;
   @Input() fileUpload: any[];
   @ViewChild('inputFile') inputFile: ElementRef;
+  @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
   progress: { percentage: number } = {percentage: 0};
+  contextMenuPosition = { x: '0px', y: '0px' };
+
   constructor(
     public upService: UploadService,
     public router: Router,
   ) { }
 
-    ngOnInit() {
-    }
-
-    detectFiles(event) {
-      this.selectedFiles = event.target.files;
-    }
-
-    uploadFiles() {
-      const file = this.selectedFiles;
-      const filesIndex = _.range(file.length);
-      _.each(filesIndex, (idx) => {
-          this.currentUpload = new UploadFile(file[idx]);
-          this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType,
-            this.progress);
-        });
-        this.reset();
-    }
-    reset() {
-      this.inputFile.nativeElement.value = '';
+  ngOnInit() {
   }
+
+  detectFiles(event) {
+    this.selectedFiles = event.target.files;
+  }
+
+  uploadFiles() {
+    const file = this.selectedFiles;
+    const filesIndex = _.range(file.length);
+    _.each(filesIndex, (idx) => {
+        this.currentUpload = new UploadFile(file[idx]);
+        this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType,
+          this.progress);
+      });
+      this.reset();
+  }
+  reset() {
+    this.inputFile.nativeElement.value = '';
+  }
+
   openDownloadFile(url: string) {
     window.open(url, '_blank');
+  }
+
+  onContextMenuFile(event: MouseEvent, item: UploadFile) {
+    event.preventDefault();
+    this.contextMenuPosition.x = event.clientX + 'px';
+    this.contextMenuPosition.y = event.clientY + 'px';
+    this.contextMenu.menuData = {'item': item};
+    this.contextMenu.openMenu();
   }
 }

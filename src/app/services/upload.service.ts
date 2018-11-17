@@ -5,6 +5,7 @@ import { UploadFile } from '../models/upload-file';
 import * as firebase from 'firebase';
 import 'firebase/storage';
 import { MatSnackBar } from '@angular/material';
+import { exists } from 'fs';
 
 @Injectable({
   providedIn: 'root'
@@ -23,8 +24,16 @@ export class UploadService {
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
+
+        // upload size restriction
+        if (uploadTask.snapshot.totalBytes > 15000) {
+          this.snackBar.open('Fisierul are' + uploadTask.snapshot.totalBytes / 1000 + '.Dimensiunea maxima este 15MB ❌',
+            null, {duration: 2000});
+          return;
+        }
         // upload in progress
         progress.percentage = Math.round((uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100);
+
       },
       (error) => {
         // upload error

@@ -16,7 +16,8 @@
           <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')" *ngIf="c.laborator">Laborator</mat-list-item>
           <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')"  *ngIf="c.seminar">Seminar</mat-list-item>
           <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')"  *ngIf="c.proiect">Proiect</mat-list-item>
-        </mat-nav-list>      </mat-expansion-panel>
+        </mat-nav-list>      
+      </mat-expansion-panel>
     </mat-accordion>
     <mat-menu #contextMenu="matMenu">
       <ng-template matMenuContent let-item="item">

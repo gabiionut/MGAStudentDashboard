@@ -1,5 +1,9 @@
 <label>
-  <input #inputFile type="file" (change)="detectFiles($event)" multiple>
+  <input #inputFile 
+         type="file"
+         multiple
+         size="15000"
+         (change)="detectFiles($event)">
 </label>
 
 <button
@@ -34,8 +38,28 @@
      fxLayoutAlign="space-around start"
      fxLayout.lt-sm="column" 
      fxLayoutGap="10px">
-    <mat-card *ngFor="let file of fileUpload" class="example-card" style="width: 150px; margin-top: 15px !important;" (click)="openDownloadFile(file.url)">
+    <mat-card *ngFor="let file of fileUpload" 
+              class="example-card" 
+              style="width: 150px; margin-top: 15px !important;" 
+              (click)="openDownloadFile(file.url)"
+              (contextmenu)="onContextMenuFile($event, file)">
+      <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
+      [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
+      </div>
     <img mat-card-image src="https://www.hyperwave.com/wp-content/uploads/2015/08/product-document-management-300x300.png" >
   <mat-card-title>{{file.name}}</mat-card-title>
-</mat-card>
+
+    <mat-menu #contextMenu = "matMenu">
+      <ng-template matMenuContent let-item="item">
+        <button mat-menu-item (click)="openDownloadFile(file.url)">
+          <mat-icon>open_in_new</mat-icon>
+          <span>Deschide</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>delete</mat-icon>
+          <span>Sterge</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </mat-card>
 </div>
