@@ -5,7 +5,6 @@ import { UploadFile } from '../models/upload-file';
 import * as firebase from 'firebase';
 import 'firebase/storage';
 import { MatSnackBar } from '@angular/material';
-import { exists } from 'fs';
 
 @Injectable({
   providedIn: 'root'

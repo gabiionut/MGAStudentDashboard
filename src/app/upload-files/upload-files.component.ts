@@ -6,7 +6,8 @@ import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import { Router } from '@angular/router';
-import { MatMenuTrigger } from '@angular/material';
+import { MatMenuTrigger, MatSnackBar } from '@angular/material';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-upload-files',
@@ -21,6 +22,7 @@ export class UploadFilesComponent implements OnInit {
   @Input() courseType: string;
   @Input() fileUpload: any[];
   @ViewChild('inputFile') inputFile: ElementRef;
+  @ViewChild('form') form: NgForm;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
 
@@ -32,13 +34,23 @@ export class UploadFilesComponent implements OnInit {
   constructor(
     public upService: UploadService,
     public router: Router,
+    public snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
   }
 
   detectFiles(event) {
-    this.selectedFiles = event.target.files;
+    const files = event.target.files;
+    console.log(files);
+    Array.prototype.forEach.call(files, file => {
+      if (file.size > 15000000) {
+        this.snackBar.open('Marimea maxima a unui fisier poate fi de 15 MB. ❌', null, {duration: 2000});
+        this.inputFile.nativeElement.value = '';
+        return;
+      }
+      this.selectedFiles = files;
+    });
   }
 
   uploadFiles() {
