@@ -10,6 +10,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../models/user.model';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 import { Router } from '@angular/router';
+import { UploadFile } from '../models/upload-file';
 
 @Component({
   selector: 'app-sidenavcourses',
@@ -23,13 +24,14 @@ export class SidenavcoursesComponent implements OnInit {
   courses: Course[];
   currentUser: User;
   course: Course;
+  currentFile: UploadFile;
   courseType: string;
   contextMenuPosition = { x: '0px', y: '0px' };
   courseTypeSelected = false;
-  fileUpload: any[];
+  filesUpload: any[];
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
-    constructor(
+  constructor(
     public dialog: MatDialog,
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
@@ -91,13 +93,18 @@ export class SidenavcoursesComponent implements OnInit {
     this.course = course;
     this.courseType = courseType;
 
+
     this.getUploadFile();
   }
   getUploadFile() {
-    this.upService.getUpload(this.currentUser.ui, this.course.key, this.courseType).valueChanges()
-      .subscribe(fileUpload => {
-        this.fileUpload = fileUpload;
-        console.log(this.fileUpload);
+    this.upService.getUpload(this.currentUser.ui, this.course.key, this.courseType).snapshotChanges()
+      .subscribe(list => {
+        this.filesUpload = list.map(item => {
+          return {
+            key: item.key,
+            ...item.payload.val()
+          };
+        });
       });
   }
 }

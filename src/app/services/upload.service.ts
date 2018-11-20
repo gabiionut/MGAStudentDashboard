@@ -5,6 +5,7 @@ import { UploadFile } from '../models/upload-file';
 import * as firebase from 'firebase';
 import 'firebase/storage';
 import { MatSnackBar } from '@angular/material';
+import { User } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root'
@@ -23,13 +24,6 @@ export class UploadService {
 
     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
       (snapshot) => {
-
-        // upload size restriction
-        if (uploadTask.snapshot.totalBytes > 15000) {
-          this.snackBar.open('Fisierul are' + uploadTask.snapshot.totalBytes / 1000 + '.Dimensiunea maxima este 15MB ❌',
-            null, {duration: 2000});
-          return;
-        }
         // upload in progress
         progress.percentage = Math.round((uploadTask.snapshot.bytesTransferred / uploadTask.snapshot.totalBytes) * 100);
 
@@ -61,6 +55,25 @@ export class UploadService {
 
   getUpload(userId: string, courseKey: string, courseType: string): AngularFireList<UploadFile> {
     return this.db.list(`users/${userId}/courses/${courseKey}/files/${courseType}Files`);
+  }
+
+  deleteFileStorage(name: string, userName: string) {
+    const storageRef = firebase.storage().ref();
+    storageRef.child(`${userName}/${this.basePath}/${name}`).delete();
+  }
+
+  deleteFileDatabase(key: string, userId: string, courseKey: string, courseType: string) {
+    return this.db.list(`users/${userId}/courses/${courseKey}/files/${courseType}Files/`).remove(key);
+  }
+
+  deleteFileUpload(fileKey: string, fileName: string, userId: string, courseKey: string, courseType: string, userName: string) {
+    this.deleteFileDatabase(fileKey, userId, courseKey, courseType)
+      .then(() => {
+        this.deleteFileStorage(fileName, userName);
+      })
+      .catch( () => {
+        this.snackBar.open('A aparut o eroare in timpul stergerii! Va rugam reincercati! ❌', null, {duration: 3000});
+      });
   }
 
 }

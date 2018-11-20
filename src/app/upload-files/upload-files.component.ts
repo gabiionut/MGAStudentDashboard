@@ -45,7 +45,7 @@ export class UploadFilesComponent implements OnInit {
     console.log(files);
     Array.prototype.forEach.call(files, file => {
       if (file.size > 15000000) {
-        this.snackBar.open('Marimea maxima a unui fisier poate fi de 15 MB. ❌', null, {duration: 2000});
+        this.snackBar.open('Marimea maxima a unui fisier poate fi de 15 MB. ❌', null, {duration: 3000});
         this.inputFile.nativeElement.value = '';
         return;
       }
@@ -77,5 +77,10 @@ export class UploadFilesComponent implements OnInit {
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = {'item': item};
     this.contextMenu.openMenu();
+  }
+
+  delete(file: UploadFile) {
+    console.log(file.name);
+    this.upService.deleteFileUpload(file.key, file.name, this.currentUser.ui, this.course.key, this.courseType, this.currentUser.name);
   }
 }
