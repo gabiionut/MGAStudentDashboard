@@ -30,7 +30,7 @@ export class UploadFilesComponent implements OnInit {
   currentUpload: UploadFile;
   progress: { percentage: number } = {percentage: 0};
   contextMenuPosition = { x: '0px', y: '0px' };
-
+  selectedFile: UploadFile;
   constructor(
     public upService: UploadService,
     public router: Router,
@@ -67,8 +67,8 @@ export class UploadFilesComponent implements OnInit {
     this.inputFile.nativeElement.value = '';
   }
 
-  openDownloadFile(url: string) {
-    window.open(url, '_blank');
+  openDownloadFile() {
+    window.open(this.selectedFile.url, '_blank');
   }
 
   onContextMenuFile(event: MouseEvent, item: UploadFile) {
@@ -77,10 +77,12 @@ export class UploadFilesComponent implements OnInit {
     this.contextMenuPosition.y = event.clientY + 'px';
     this.contextMenu.menuData = {'item': item};
     this.contextMenu.openMenu();
+    this.selectedFile = item;
+    console.log(item.name);
   }
 
-  delete(file: UploadFile) {
-    console.log(file.name);
-    this.upService.deleteFileUpload(file.key, file.name, this.currentUser.ui, this.course.key, this.courseType, this.currentUser.name);
+  delete() {
+    this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
+       this.course.key, this.courseType, this.currentUser.name);
   }
 }

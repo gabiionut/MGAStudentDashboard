@@ -53,11 +53,11 @@
 
     <mat-menu #contextMenu = "matMenu">
       <ng-template matMenuContent let-item="item">
-        <button mat-menu-item (click)="openDownloadFile(file.url)">
+        <button mat-menu-item (click)="openDownloadFile()">
           <mat-icon>open_in_new</mat-icon>
           <span>Deschide</span>
         </button>
-        <button mat-menu-item (click)="delete(file)">
+        <button mat-menu-item (click)="delete()">
           <mat-icon>delete</mat-icon>
           <span>Sterge</span>
         </button>
