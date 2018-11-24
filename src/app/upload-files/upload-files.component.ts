@@ -12,7 +12,7 @@ import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-upload-files',
   templateUrl: './upload-files.component.html',
-  styleUrls: ['./upload-files.component.css']
+  styleUrls: ['./upload-files.component.scss']
 })
 export class UploadFilesComponent implements OnInit {
 

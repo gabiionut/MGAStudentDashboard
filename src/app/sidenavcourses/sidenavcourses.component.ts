@@ -15,7 +15,7 @@ import { UploadFile } from '../models/upload-file';
 @Component({
   selector: 'app-sidenavcourses',
   templateUrl: './sidenavcourses.component.html',
-  styleUrls: ['./sidenavcourses.component.css']
+  styleUrls: ['./sidenavcourses.component.scss']
 })
 export class SidenavcoursesComponent implements OnInit {
 
