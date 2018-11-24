@@ -78,7 +78,6 @@ export class UploadFilesComponent implements OnInit {
     this.contextMenu.menuData = {'item': item};
     this.contextMenu.openMenu();
     this.selectedFile = item;
-    console.log(item.name);
   }
 
   delete() {
