@@ -9,7 +9,7 @@ import { User } from 'src/app/models/user.model';
 @Component({
   selector: 'app-course-delete',
   templateUrl: './course-delete.component.html',
-  styleUrls: ['./course-delete.component.css']
+  styleUrls: ['./course-delete.component.scss']
 })
 export class CourseDeleteComponent implements OnInit  {
 

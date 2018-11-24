@@ -23,10 +23,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
-            "scripts": [
-            ]
+            "scripts": []
           },
           "configurations": {
             "production": {
@@ -124,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "StudentDashboard"
+  "defaultProject": "StudentDashboard",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }
