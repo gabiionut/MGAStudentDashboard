@@ -51,6 +51,7 @@ import { CourseDeleteComponent } from './message-alert/course-delete/course-dele
 import { UploadFilesComponent } from './upload-files/upload-files.component';
 import { UploadService } from './services/upload.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { MainPageComponent } from './main-page/main-page.component';
 
 @NgModule({
   declarations: [
@@ -64,6 +65,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     LoginComponent,
     CourseDeleteComponent,
     UploadFilesComponent,
+    MainPageComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -104,12 +106,18 @@ import { FlexLayoutModule } from '@angular/flex-layout';
         component: LoginComponent,
       },
       {
-        path: 'courses/:id',
+        path: 'cursuri/:name/:type',
+        component: UploadFilesComponent,
+        canActivate: [AuthGuardService]
+      },
+
+      {
+        path: 'cursuri/:id',
         component: CoursesComponent,
         canActivate: [AuthGuardService]
       },
       {
-        path: 'courses',
+        path: 'cursuri',
         component: CoursesComponent,
         canActivate: [AuthGuardService]
       },

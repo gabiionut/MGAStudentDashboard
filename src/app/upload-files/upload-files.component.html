@@ -1,68 +1,42 @@
-<form #form>
-<label>
-  <input #inputFile 
-         type="file"
-         multiple
-         size="15000"
-         (change)="detectFiles($event)">
-</label>
+<app-sidenavcourses></app-sidenavcourses>
+<mat-drawer-container class="page-container">
+  <mat-drawer-content class="left-side">
+    <form #form>
+      <label>
+        <input #inputFile type="file" multiple size="15000" (change)="detectFiles($event)">
+      </label>
 
-<button
-      [disabled]="!selectedFiles"
-      (click)="uploadFiles()">
+      <button [disabled]="!selectedFiles" (click)="uploadFiles()">
 
- Upload Files
-</button>
-</form>
-<mat-progress-bar
-  *ngIf="this.upService.uploadFinished"
-  mode="determinate" 
-  value="{{progress.percentage}}">
-</mat-progress-bar>
+        Upload Files
+      </button>
+    </form>
+    <mat-progress-bar *ngIf="this.upService.uploadFinished" mode="determinate" value="{{progress.percentage}}">
+    </mat-progress-bar>
 
-<!-- <div class="file-card-display " 
-     fxLayout="row wrap" 
-     fxLayout.lt-sm="column" 
-     fxLayoutWrap fxLayoutGap="10px"
-     fxLayoutAlign="flex-start">
-    <mat-card  class="file-card"  
-      *ngFor="let file of fileUpload"
-      xFlex="0 1 calc(33.3% - 10px)"
-      fxFlex.lt-md="0 1 calc(50% - 32px)"
-      fxFlex.lt-sm="100%">
-      <img mat-card-image src="https://www.materialui.co/materialIcons/editor/insert_drive_file_grey_192x192.png">
-      <mat-card-title>{{file.name}}</mat-card-title>
-    </mat-card>
-</div> -->
+    <div class="file-card-display " fxLayout="row wrap" fxLayoutAlign="space-around start" fxLayout.lt-sm="column"
+      fxLayoutGap="10px">
+      <mat-card *ngFor="let file of fileUpload" class="example-card" style="width: 100px; margin-top: 15px !important;"
+        (click)="openDownloadFile(file.url)" (contextmenu)="onContextMenuFile($event, file)">
+        <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
+          [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
+        </div>
+        <img mat-card-image style="width:80% !important;display: block;margin-left: auto; margin-right: auto;" src="https://i.ibb.co/jR9BHXS/ads.png">
+        <mat-card-title>{{file.name}}</mat-card-title>
 
-<div class="file-card-display " 
-     fxLayout="row wrap" 
-     fxLayoutAlign="space-around start"
-     fxLayout.lt-sm="column" 
-     fxLayoutGap="10px">
-    <mat-card *ngFor="let file of fileUpload" 
-              class="example-card" 
-              style="width: 100px; margin-top: 15px !important;" 
-              (click)="openDownloadFile(file.url)"
-              (contextmenu)="onContextMenuFile($event, file)">
-      <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
-      [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
-      </div>
-    <img mat-card-image style="width:80% !important;display: block;margin-left: auto; margin-right: auto;" 
-      src="https://i.ibb.co/jR9BHXS/ads.png">
-  <mat-card-title>{{file.name}}</mat-card-title>
-
-    <mat-menu #contextMenu = "matMenu">
-      <ng-template matMenuContent let-item="item">
-        <button mat-menu-item (click)="openDownloadFile()">
-          <mat-icon>open_in_new</mat-icon>
-          <span>Deschide</span>
-        </button>
-        <button mat-menu-item (click)="delete()">
-          <mat-icon>delete</mat-icon>
-          <span>Sterge</span>
-        </button>
-      </ng-template>
-    </mat-menu>
-  </mat-card>
-</div>
+        <mat-menu #contextMenu="matMenu">
+          <ng-template matMenuContent let-item="item">
+            <button mat-menu-item (click)="openDownloadFile()">
+              <mat-icon>open_in_new</mat-icon>
+              <span>Deschide</span>
+            </button>
+            <button mat-menu-item (click)="delete()">
+              <mat-icon>delete</mat-icon>
+              <span>Sterge</span>
+            </button>
+          </ng-template>
+        </mat-menu>
+      </mat-card>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -8,6 +8,9 @@ import * as _ from 'lodash';
 import { Router } from '@angular/router';
 import { MatMenuTrigger, MatSnackBar } from '@angular/material';
 import { NgForm } from '@angular/forms';
+import { CoursesService } from '../services/courses.service';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
   selector: 'app-upload-files',
@@ -31,13 +34,39 @@ export class UploadFilesComponent implements OnInit {
   progress: { percentage: number } = {percentage: 0};
   contextMenuPosition = { x: '0px', y: '0px' };
   selectedFile: UploadFile;
+  filesUpload: any[];
   constructor(
     public upService: UploadService,
     public router: Router,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public coursesService: CoursesService,
+    private angularFireAuth: AngularFireAuth,
+    private angularFireDatabase: AngularFireDatabase,
+
   ) { }
 
   ngOnInit() {
+    this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
+      this.currentUser = res;
+      this.coursesService.getAll(this.currentUser.ui).snapshotChanges()
+        .subscribe(
+          list => {
+            this.courses = list.map(item => {
+              return {
+                key: item.key,
+                ...item.payload.val()
+              };
+            });
+          },
+          () => {
+          this.getUploadFile();
+          });
+    });
+  }
+
+  getCurrentUserProfile() {
+    const currentUserUid = this.angularFireAuth.auth.currentUser.uid;
+    return this.angularFireDatabase.object(`users/${currentUserUid}`);
   }
 
   detectFiles(event) {
@@ -83,5 +112,17 @@ export class UploadFilesComponent implements OnInit {
   delete() {
     this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
        this.course.key, this.courseType, this.currentUser.name);
+  }
+
+  getUploadFile() {
+    this.upService.getUpload(this.currentUser.ui, this.course.key, this.courseType).snapshotChanges()
+      .subscribe(list => {
+        this.filesUpload = list.map(item => {
+          return {
+            key: item.key,
+            ...item.payload.val()
+          };
+        });
+      });
   }
 }

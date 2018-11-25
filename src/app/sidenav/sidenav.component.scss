@@ -1,23 +1,15 @@
 @import "../variables";
 
-.page-container {
+  .left-side{
     position: absolute;
     top: 60px;
     bottom: 0;
     left: 0;
     right: 0;
-    background: #eee;  
-  }
-  
-  .left-side{
-    background-color: map-get($colors, $key:primary);
-    color: map-get($colors,text-primary);
+    margin-top:4px;
+    background-color: map-get($colors,primary);
+    width:220px;
     text-align: center;
-    width: 220px;
-  }
-  .right-side{
-    text-align: center;
-    font-size: 150px;
   }
   .item-list {
     color: map-get($colors,text-primary);

@@ -14,3 +14,18 @@ mat-card {
     height: 28px;
     overflow: hidden;
 }
+.page-container {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;  
+    margin-top: 4px;
+    margin-left: 220px;
+  }
+    
+    .right-side{
+      text-align: center;
+      font-size: 150px;
+    }
