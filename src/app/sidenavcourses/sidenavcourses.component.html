@@ -1,9 +1,9 @@
-<mat-drawer-container class="example-container">
+<mat-drawer-container class="courses-container">
   <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
-    <button mat-button (click)="openDialog()">Adauga curs</button>
+    <button mat-button class="addCourseButton" (click)="openDialog()">Adauga curs</button>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let c of courses">
-        <mat-expansion-panel-header (contextmenu)="onContextMenu($event, c)">
+        <mat-expansion-panel-header class="expanation-panel" (contextmenu)="onContextMenu($event, c)">
           <mat-panel-title>
             {{c.nume}}
           </mat-panel-title>
@@ -11,12 +11,12 @@
             [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: c}">
           </div>
         </mat-expansion-panel-header>
-        <mat-nav-list class="type-list" role="list">
-          <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')" *ngIf="c.curs">Curs</mat-list-item>
-          <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')" *ngIf="c.laborator">Laborator</mat-list-item>
-          <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')"  *ngIf="c.seminar">Seminar</mat-list-item>
-          <mat-list-item class="type-list-item" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')"  *ngIf="c.proiect">Proiect</mat-list-item>
-        </mat-nav-list>      
+        <mat-selection-list   role="list">
+          <mat-list-option  role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')" *ngIf="c.curs">Curs</mat-list-option>
+          <mat-list-option  role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')" *ngIf="c.laborator">Laborator</mat-list-option>
+          <mat-list-option  role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')"  *ngIf="c.seminar">Seminar</mat-list-option>
+          <mat-list-option  role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')"  *ngIf="c.proiect">Proiect</mat-list-option>
+        </mat-selection-list>      
       </mat-expansion-panel>
     </mat-accordion>
     <mat-menu #contextMenu="matMenu">
@@ -32,6 +32,8 @@
       </ng-template>
     </mat-menu>
   </mat-drawer>
+
+  
   <mat-drawer-content>
     <app-upload-files *ngIf="courseTypeSelected" [currentUser]="currentUser" [course]="course" [courseType]="courseType" [fileUpload]="filesUpload" ></app-upload-files>
     <h1 *ngIf="!courseTypeSelected">Main Content</h1>

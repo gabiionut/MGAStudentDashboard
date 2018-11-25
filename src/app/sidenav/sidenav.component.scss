@@ -1,4 +1,6 @@
-.example-container {
+@import "../variables";
+
+.page-container {
     position: absolute;
     top: 60px;
     bottom: 0;
@@ -8,10 +10,19 @@
   }
   
   .left-side{
-    width:15%;
+    background-color: map-get($colors, $key:primary);
+    color: map-get($colors,text-primary);
     text-align: center;
+    width: 220px;
   }
   .right-side{
     text-align: center;
     font-size: 150px;
+  }
+  .item-list {
+    color: map-get($colors,text-primary);
+
+    &:hover{
+      background-color: map-get($colors,secondary);
+    }
   }
