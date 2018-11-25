@@ -42,13 +42,14 @@
      fxLayoutGap="10px">
     <mat-card *ngFor="let file of fileUpload" 
               class="example-card" 
-              style="width: 150px; margin-top: 15px !important;" 
+              style="width: 100px; margin-top: 15px !important;" 
               (click)="openDownloadFile(file.url)"
               (contextmenu)="onContextMenuFile($event, file)">
       <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
       [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
       </div>
-    <img mat-card-image src="https://www.hyperwave.com/wp-content/uploads/2015/08/product-document-management-300x300.png" >
+    <img mat-card-image style="width:80% !important;display: block;margin-left: auto; margin-right: auto;" 
+      src="https://i.ibb.co/jR9BHXS/ads.png">
   <mat-card-title>{{file.name}}</mat-card-title>
 
     <mat-menu #contextMenu = "matMenu">

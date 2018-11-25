@@ -3,13 +3,14 @@
 }
 
 mat-card {
+    padding-bottom: 5px !important;
     margin-top: 10px !important;
     cursor: pointer;
 }
 
 .mat-card-title {
     font-weight:bold;
-    font-size: 20px; 
-    max-height: 45px;
+    font-size: 12.5px; 
+    height: 28px;
     overflow: hidden;
 }
