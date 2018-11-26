@@ -48,7 +48,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { LoginComponent } from './login/login.component';
 import { CourseDeleteComponent } from './message-alert/course-delete/course-delete.component';
-import { UploadFilesComponent } from './upload-files/upload-files.component';
+import { FilesComponent } from './files/files.component';
 import { UploadService } from './services/upload.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
@@ -64,7 +64,7 @@ import { MainPageComponent } from './main-page/main-page.component';
     ChooseCcoursesStructureFormComponent,
     LoginComponent,
     CourseDeleteComponent,
-    UploadFilesComponent,
+    FilesComponent,
     MainPageComponent,
   ],
   imports: [
@@ -107,7 +107,7 @@ import { MainPageComponent } from './main-page/main-page.component';
       },
       {
         path: 'cursuri/:name/:type',
-        component: UploadFilesComponent,
+        component: FilesComponent,
         canActivate: [AuthGuardService]
       },
 

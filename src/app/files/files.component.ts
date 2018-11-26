@@ -13,11 +13,11 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 
 @Component({
-  selector: 'app-upload-files',
-  templateUrl: './upload-files.component.html',
-  styleUrls: ['./upload-files.component.scss']
+  selector: 'app-files',
+  templateUrl: './files.component.html',
+  styleUrls: ['./files.component.scss']
 })
-export class UploadFilesComponent implements OnInit {
+export class FilesComponent implements OnInit {
 
   courses: Course[];
   @Input() currentUser: User;
