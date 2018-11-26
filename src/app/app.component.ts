@@ -11,12 +11,13 @@ import { User } from './models/user.model';
 })
 export class AppComponent {
   title = 'Student DashBoard';
-  currentUser: User;
+  currentUser;
 
   constructor(public authService: AuthenticationService, private route: Router, private userService: UserService) {
 
     this.authService.user$.subscribe(user => {
       if (user) {
+        this.currentUser = user;
         this.userService.save(user);
         this.route.navigate(['/']);
       } else {

@@ -5,12 +5,13 @@ import { UploadFile } from '../models/upload-file';
 import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
 import * as _ from 'lodash';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, ActivatedRoute, NavigationStart, ParamMap } from '@angular/router';
 import { MatMenuTrigger, MatSnackBar } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { CoursesService } from '../services/courses.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
+import 'rxjs/add/operator/filter';
 
 @Component({
   selector: 'app-files',
@@ -22,11 +23,12 @@ export class FilesComponent implements OnInit {
   courses: Course[];
   @Input() currentUser: User;
   @Input() course: Course;
-  @Input() courseType: string;
- // @Input() fileUpload: any[];
+  // @Input() fileUpload: any[];
   @ViewChild('inputFile') inputFile: ElementRef;
   @ViewChild('form') form: NgForm;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
+  courseKey: string;
+  courseType: string;
 
 
   selectedFiles: FileList;
@@ -38,6 +40,7 @@ export class FilesComponent implements OnInit {
   constructor(
     public upService: UploadService,
     public router: Router,
+    public route: ActivatedRoute,
     public snackBar: MatSnackBar,
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
@@ -49,19 +52,22 @@ export class FilesComponent implements OnInit {
   ngOnInit() {
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
-      this.coursesService.getAll(this.currentUser.ui).snapshotChanges()
-        .subscribe(
-          list => {
-            this.courses = list.map(item => {
-              return {
-                key: item.key,
-                ...item.payload.val()
-              };
-            });
-          },
-          () => {
-            this.getUploadFile();
+      this.route.paramMap.subscribe((params:  ParamMap) => {
+        console.log(params);
+        this.courseKey = params['params'].key;
+        this.courseType = params['params'].type;
+      });
+      this.getUploadFile();
+      this.router.events
+        .filter(event => event instanceof NavigationEnd)
+        .subscribe((event: NavigationEnd) => {
+          // You only receive NavigationStart events
+          this.route.paramMap.subscribe(params => {
+            this.courseKey = params['params'].key;
+            this.courseType = params['params'].type;
           });
+          this.getUploadFile();
+        });
     });
   }
 
@@ -88,7 +94,7 @@ export class FilesComponent implements OnInit {
     const filesIndex = _.range(file.length);
     _.each(filesIndex, (idx) => {
       this.currentUpload = new UploadFile(file[idx]);
-      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.course.key, this.currentUser.name, this.courseType,
+      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.courseKey, this.currentUser.name, this.courseType,
         this.progress);
     });
     this.reset();
@@ -97,8 +103,9 @@ export class FilesComponent implements OnInit {
     this.inputFile.nativeElement.value = '';
   }
 
-  openDownloadFile() {
-    window.open(this.selectedFile.url, '_blank');
+  openDownloadFile(selectedFile) {
+    const file = selectedFile ? selectedFile : this.selectedFile;
+    window.open(file.url, '_blank');
   }
 
   onContextMenuFile(event: MouseEvent, item: UploadFile) {
@@ -112,11 +119,11 @@ export class FilesComponent implements OnInit {
 
   delete() {
     this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
-      this.course.key, this.courseType, this.currentUser.name, this.currentUpload.url);
+      this.courseKey, this.courseType, this.currentUser.name);
   }
 
   getUploadFile() {
-    this.upService.getUpload(this.currentUser.ui, this.course.key, this.courseType).snapshotChanges()
+    this.upService.getUpload(this.currentUser.ui, this.courseKey, this.courseType).snapshotChanges()
       .subscribe(list => {
         this.filesUpload = list.map(item => {
           return {
@@ -124,6 +131,7 @@ export class FilesComponent implements OnInit {
             ...item.payload.val()
           };
         });
+        console.log(this.filesUpload);
       });
   }
 }

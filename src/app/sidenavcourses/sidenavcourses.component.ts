@@ -41,7 +41,6 @@ export class SidenavcoursesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
       this.coursesService.getAll(this.currentUser.ui).snapshotChanges()

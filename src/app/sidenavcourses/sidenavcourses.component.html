@@ -11,7 +11,7 @@
         </div>
       </mat-expansion-panel-header>
       <mat-selection-list role="list">
-        <mat-list-option [routerLink]="[c.nume,'curs']" routerLinkActive  role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')"
+        <mat-list-option [routerLink]="['cursuri', c.key,'curs']" routerLinkActive  role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')"
           *ngIf="c.curs">Curs</mat-list-option>
         <mat-list-option [routerLink]="[c.nume,'laborator']" routerLinkActive role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')"
           *ngIf="c.laborator">Laborator</mat-list-option>

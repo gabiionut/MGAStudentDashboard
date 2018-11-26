@@ -57,9 +57,9 @@ export class UploadService {
     return this.db.list(`users/${userId}/courses/${courseKey}/files/${courseType}Files`);
   }
 
-  deleteFileStorage(name: string, userName: string, url: string) {
+  deleteFileStorage(name: string, userName: string) {
     const storageRef = firebase.storage().ref();
-    storageRef.child(`${userName}/${this.basePath}/${name}/${url}`).delete();
+    storageRef.child(`${userName}/${this.basePath}/${name}`).delete();
   }
 
   deleteFileDatabase(key: string, userId: string, courseKey: string, courseType: string) {
@@ -67,10 +67,10 @@ export class UploadService {
   }
 
   deleteFileUpload(fileKey: string, fileName: string, userId: string,
-     courseKey: string, courseType: string, userName: string, url: string) {
+     courseKey: string, courseType: string, userName: string) {
     this.deleteFileDatabase(fileKey, userId, courseKey, courseType)
       .then(() => {
-        this.deleteFileStorage(fileName, userName, url);
+        this.deleteFileStorage(fileName, userName);
       })
       .catch( () => {
         this.snackBar.open('A aparut o eroare in timpul stergerii! Va rugam reincercati! ❌', null, {duration: 3000});

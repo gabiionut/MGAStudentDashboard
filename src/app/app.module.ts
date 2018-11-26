@@ -106,7 +106,7 @@ import { MainPageComponent } from './main-page/main-page.component';
         component: LoginComponent,
       },
       {
-        path: 'cursuri/:name/:type',
+        path: 'cursuri/:key/:type',
         component: FilesComponent,
         canActivate: [AuthGuardService],
         runGuardsAndResolvers: 'always'
