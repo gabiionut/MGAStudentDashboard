@@ -108,7 +108,8 @@ import { MainPageComponent } from './main-page/main-page.component';
       {
         path: 'cursuri/:name/:type',
         component: FilesComponent,
-        canActivate: [AuthGuardService]
+        canActivate: [AuthGuardService],
+        runGuardsAndResolvers: 'always'
       },
 
       {
@@ -121,6 +122,7 @@ import { MainPageComponent } from './main-page/main-page.component';
         component: CoursesComponent,
         canActivate: [AuthGuardService]
       },
+
     ])
   ],
   providers: [

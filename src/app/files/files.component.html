@@ -16,7 +16,7 @@
 
     <div class="file-card-display " fxLayout="row wrap" fxLayoutAlign="space-around start" fxLayout.lt-sm="column"
       fxLayoutGap="10px">
-      <mat-card *ngFor="let file of fileUpload" class="example-card" style="width: 100px; margin-top: 15px !important;"
+      <mat-card *ngFor="let file of filesUpload" class="example-card" style="width: 100px; margin-top: 15px !important;"
         (click)="openDownloadFile(file.url)" (contextmenu)="onContextMenuFile($event, file)">
         <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
           [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
