@@ -42,3 +42,10 @@
         color:map-get($colors,secondary);
     }
 }
+
+.logo{
+    &:hover { 
+      text-shadow: 2px 2px 5px ;
+      color: map-get($colors,secondary) !important;
+    }
+}

@@ -1,15 +1,16 @@
 <mat-toolbar>
-    <mat-icon class="logo-icon">home</mat-icon>
-    <div class="logo" routerLink="/" >
-      Student DashBoard
-    </div>
-    <span class="fill-remaining-space"></span>
-    <span>
+  <mat-icon class="logo-icon">home</mat-icon>
+  <div class="logo" routerLink="/">
+    Student DashBoard
+  </div>
+
+  <span class="fill-remaining-space"></span>
+  <span>
     <span class="user-name" *ngIf="authService.user$ | async as user">{{ user.displayName }}</span>
     <button class="navbar-menu" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
-    <mat-menu  #menu="matMenu">
+    <mat-menu #menu="matMenu">
       <button mat-menu-item>
         <mat-icon>dialpad</mat-icon>
         <span>Redial</span>
@@ -24,5 +25,4 @@
       </button>
     </mat-menu>
   </span>
-  </mat-toolbar>
-  
+</mat-toolbar>

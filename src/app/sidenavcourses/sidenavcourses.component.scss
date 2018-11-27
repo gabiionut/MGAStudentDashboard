@@ -25,6 +25,12 @@
     }
   }
 
+  .mat-expansion-panel{
+    background-color: map-get($colors,primary);
+  }
+
+
+
   .expanation-panel{
     background-color: map-get($colors, primary) !important;
     color: map-get($colors, text-primary) !important;
@@ -33,6 +39,16 @@
          background-color: map-get($colors,secondary) !important;
        }
   }
+
+  .expanation-panel-home{
+    background-color: map-get($colors, primary) !important;
+    color: map-get($colors, text-primary) !important;
+    border-radius: 0 !important;
+       &:hover {
+         background-color: map-get($colors,secondary) !important;
+       }
+  }
+
 
   .active {
     background-color: map-get($colors,secondary) !important;
@@ -61,17 +77,16 @@
     padding: 0 !important;
   }
 
-  ::ng-deep .mat-list-base .mat-list-option .mat-list-item-content-reverse {
-    padding: 0 !important;
-  }
-
   ::ng-deep .mat-expansion-indicator::after{
     color: map-get($colors, text-primary);
   }
-  ::ng-deep.mat-pseudo-checkbox{
+  ::ng-deep .mat-pseudo-checkbox{
   display: none !important;
 }
 
+::ng-deep .expanation-panel-home > .mat-expansion-indicator:after {
+  display: none;
+}
 ::ng-deep.mat-drawer-inner-container{
   background-color:map-get($colors, primary) !important;
 }
