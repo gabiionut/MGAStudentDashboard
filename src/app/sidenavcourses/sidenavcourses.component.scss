@@ -32,9 +32,26 @@
        &:hover {
          background-color: map-get($colors,secondary) !important;
        }
-      }
+  }
+  
+  mat-list-option a.active{
+    text-decoration: none !important;
+    background-color: map-get($colors,secondary);
+    color: map-get($colors,text-primary);
+
+    }
+  mat-list-option a{
+    text-decoration: none !important;
+    background-color: map-get($colors,primary);
+    color: map-get($colors,text-primary);
+   
+    &:hover {
+      background-color: map-get($colors,secondary) !important;
+    }
+    }
 
   mat-selection-list >  mat-list-option{
+    text-decoration: none;
     background-color: map-get($colors, primary) !important;
     color: map-get($colors, text-primary) !important;
      
@@ -52,7 +69,10 @@
     color: map-get($colors, text-primary);
     padding: 0px !important;
   }
-  
+  ::ng-deep .mat-list-text{
+    padding: 0 !important;
+  }
+
   ::ng-deep .mat-expansion-indicator::after{
     color: map-get($colors, text-primary);
   }
