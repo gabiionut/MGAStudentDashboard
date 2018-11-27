@@ -54,7 +54,6 @@ export class FilesComponent implements OnInit {
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
       this.route.paramMap.subscribe((params:  ParamMap) => {
-        console.log(params);
         this.courseKey = params['params'].key;
         this.courseType = params['params'].type;
       });
@@ -79,7 +78,6 @@ export class FilesComponent implements OnInit {
 
   detectFiles(event) {
     const files = event.target.files;
-    console.log(files);
     Array.prototype.forEach.call(files, file => {
       if (file.size > 15000000) {
         this.snackBar.open('Marimea maxima a unui fisier poate fi de 15 MB. ❌', null, { duration: 3000 });
@@ -132,7 +130,6 @@ export class FilesComponent implements OnInit {
             ...item.payload.val()
           };
         });
-        console.log(this.filesUpload);
       });
   }
 
