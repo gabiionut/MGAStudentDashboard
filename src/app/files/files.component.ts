@@ -6,12 +6,13 @@ import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import { Router, NavigationEnd, ActivatedRoute, NavigationStart, ParamMap } from '@angular/router';
-import { MatMenuTrigger, MatSnackBar } from '@angular/material';
+import { MatMenuTrigger, MatSnackBar, MatDialog } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { CoursesService } from '../services/courses.service';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/filter';
+import { UploadFilesComponent } from '../dialogs/upload-files/upload-files.component';
 
 @Component({
   selector: 'app-files',
@@ -45,7 +46,7 @@ export class FilesComponent implements OnInit {
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase,
-
+    public dialog: MatDialog
   ) {
 
   }
@@ -133,5 +134,11 @@ export class FilesComponent implements OnInit {
         });
         console.log(this.filesUpload);
       });
+  }
+
+  openUploadDialog() {
+    const dialogRef = this.dialog.open(UploadFilesComponent, {
+      width: '750px',
+    });
   }
 }

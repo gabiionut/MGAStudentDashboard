@@ -1,0 +1,15 @@
+@import "../../_variables.scss";
+
+.upload-drop-zone {
+    border: 2px dashed map-get($colors,primary);
+    border-radius: 5px;
+    background: white;
+    min-height: 150px;
+    padding: 54px 54px;
+}
+
+.drag-drop-text {
+    font-family: 'Roboto', sans-serif;
+    font-size: 25px;
+    color: map-get($colors,primary)
+}
