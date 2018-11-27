@@ -9,7 +9,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../models/user.model';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { UploadFile } from '../models/upload-file';
 
 @Component({
@@ -38,9 +38,15 @@ export class SidenavcoursesComponent implements OnInit {
     private angularFireDatabase: AngularFireDatabase,
     private router: Router,
     private upService: UploadService,
+
   ) { }
 
   ngOnInit() {
+    this.router.events
+        .filter(event => event instanceof NavigationEnd)
+        .subscribe((event: NavigationEnd) => {
+        });
+    console.log(this.router.url.startsWith);
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
       this.coursesService.getAll(this.currentUser.ui).snapshotChanges()

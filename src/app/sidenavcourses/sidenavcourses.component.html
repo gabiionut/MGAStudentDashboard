@@ -1,46 +1,56 @@
 <mat-drawer class="left-side" mode="side" opened [disableClose]="true">
-  <button mat-button class="addCourseButton" (click)="openDialog()">Adauga curs</button>
-  <mat-accordion>
-    <mat-expansion-panel *ngFor="let c of courses">
-      <mat-expansion-panel-header class="expanation-panel" (contextmenu)="onContextMenu($event, c)">
-        <mat-panel-title>
-          {{c.nume}}
-        </mat-panel-title>
-        <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
-          [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: c}">
-        </div>
-      </mat-expansion-panel-header>
-      <mat-selection-list role="list">
-        <mat-list-option *ngIf="c.curs" [routerLink]="['cursuri', c.key,'curs']" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')">
-          <span>Curs</span>
-        </mat-list-option>
-        <mat-list-option *ngIf="c.laborator" [routerLink]="['cursuri', c.key,'laborator']" routerLinkActive="active"
-          mat-list-option role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')"
-          [routerLinkActiveOptions]="{exact: true}">
-          <span>Laborator</span>
-        </mat-list-option>
-        <mat-list-option *ngIf="c.seminar" mat-list-option [routerLink]="['cursuri', c.key,'seminar']" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')">
-          <span>Seminar</span>
-        </mat-list-option>
-        <mat-list-option *ngIf="c.proiect" mat-list-option [routerLink]="['cursuri', c.key,'proiect']" routerLinkActive="active"
-          [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')">
-          <span>Proiect</span>
-        </mat-list-option>
-      </mat-selection-list>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <mat-menu #contextMenu="matMenu">
-    <ng-template matMenuContent let-item="item">
-      <button mat-menu-item [routerLink]="['/courses/',item.nume]" (click)="openDialog(item)">
-        <mat-icon>edit</mat-icon>
-        <span>Editeaza</span>
-      </button>
-      <button mat-menu-item (click)="openDeleteDialog(item)">
-        <mat-icon>delete</mat-icon>
-        <span>Sterge</span>
-      </button>
-    </ng-template>
-  </mat-menu>
+  <div>
+    <mat-nav-list class="list" *ngIf="router.url == '/' ">
+      <a mat-list-item class="item-list" routerLink="/cursuri">Cursuri</a>
+    </mat-nav-list>
+  </div>
+
+  <div *ngIf="router.url.startsWith('/cursuri')">
+    <button mat-button class="addCourseButton" (click)="openDialog()">Adauga curs</button>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let c of courses">
+        <mat-expansion-panel-header class="expanation-panel" (contextmenu)="onContextMenu($event, c)">
+          <mat-panel-title>
+            {{c.nume}}
+          </mat-panel-title>
+          <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
+            [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: c}">
+          </div>
+        </mat-expansion-panel-header>
+        <mat-selection-list role="list">
+          <mat-list-option *ngIf="c.curs" [routerLink]="['cursuri', c.key,'curs']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')">
+            <span>Curs</span>
+          </mat-list-option>
+          <mat-list-option *ngIf="c.laborator" [routerLink]="['cursuri', c.key,'laborator']" routerLinkActive="active"
+            mat-list-option role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')"
+            [routerLinkActiveOptions]="{exact: true}">
+            <span>Laborator</span>
+          </mat-list-option>
+          <mat-list-option *ngIf="c.seminar" mat-list-option [routerLink]="['cursuri', c.key,'seminar']"
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer"
+            (click)="onCourseTypeClick(c, 'seminar')">
+            <span>Seminar</span>
+          </mat-list-option>
+          <mat-list-option *ngIf="c.proiect" mat-list-option [routerLink]="['cursuri', c.key,'proiect']"
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer"
+            (click)="onCourseTypeClick(c, 'proiect')">
+            <span>Proiect</span>
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-menu #contextMenu="matMenu">
+      <ng-template matMenuContent let-item="item">
+        <button mat-menu-item [routerLink]="['/courses/',item.nume]" (click)="openDialog(item)">
+          <mat-icon>edit</mat-icon>
+          <span>Editeaza</span>
+        </button>
+        <button mat-menu-item (click)="openDeleteDialog(item)">
+          <mat-icon>delete</mat-icon>
+          <span>Sterge</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </div>
 </mat-drawer>
