@@ -11,21 +11,22 @@
         </div>
       </mat-expansion-panel-header>
       <mat-selection-list role="list">
-        <mat-list-option *ngIf="c.curs">
-          <a [routerLink]="['cursuri', c.key,'curs']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
-            role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')">Curs</a>
+        <mat-list-option *ngIf="c.curs" [routerLink]="['cursuri', c.key,'curs']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'curs')">
+          <span>Curs</span>
         </mat-list-option>
-        <mat-list-option *ngIf="c.laborator">
-          <a mat-list-option [routerLink]="['cursuri', c.key,'laborator']" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')">Laborator</a>
+        <mat-list-option *ngIf="c.laborator" [routerLink]="['cursuri', c.key,'laborator']" routerLinkActive="active"
+          mat-list-option role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')"
+          [routerLinkActiveOptions]="{exact: true}">
+          <span>Laborator</span>
         </mat-list-option>
-        <mat-list-option *ngIf="c.seminar">
-          <a mat-list-option [routerLink]="['cursuri', c.key,'seminar']" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')">Seminar</a>
+        <mat-list-option *ngIf="c.seminar" mat-list-option [routerLink]="['cursuri', c.key,'seminar']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')">
+          <span>Seminar</span>
         </mat-list-option>
-        <mat-list-option *ngIf="c.proiect">
-          <a mat-list-option [routerLink]="['cursuri', c.key,'proiect']" routerLinkActive="active"
-            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')">Proiect</a>
+        <mat-list-option *ngIf="c.proiect" mat-list-option [routerLink]="['cursuri', c.key,'proiect']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')">
+          <span>Proiect</span>
         </mat-list-option>
       </mat-selection-list>
     </mat-expansion-panel>
