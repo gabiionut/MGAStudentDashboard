@@ -46,7 +46,6 @@ export class SidenavcoursesComponent implements OnInit {
         .filter(event => event instanceof NavigationEnd)
         .subscribe((event: NavigationEnd) => {
         });
-    console.log(this.router.url.startsWith);
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
       this.coursesService.getAll(this.currentUser.ui).snapshotChanges()
@@ -86,6 +85,7 @@ export class SidenavcoursesComponent implements OnInit {
   }
 
   onContextMenu(event: MouseEvent, item: Course) {
+    console.log('este');
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
