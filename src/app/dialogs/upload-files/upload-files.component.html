@@ -2,7 +2,14 @@
   <div fxLayout="row">
     <mat-icon style="width:100px; height: 100px;" class="material-icons md-100 primary-color">cloud_upload</mat-icon>
   </div>
-  <div fxLayout="row" class="drag-drop-text" >Trage fisierele aici</div>
+  <div fxLayout="row" class="drag-drop-text">Trage fisierele aici</div>
   <div fxLayout="row" style="color: gray; margin-top: 5px;" class="font-roboto">sau</div>
-  <button mat-raised-button class="bg-primary" style="color: white; margin-top: 10px;">Cauta fisiere</button>
+  <div class="choose-btn font-roboto">
+    <form #form>
+      <input #inputFile type="file" name="file" id="file" class="inputfile" multiple size="15000" (change)="detectFiles($event)" />
+      <label class="bg-primary choose-btn" for="file">Alege fisiere</label>
+    </form>
+  </div>
+  <mat-progress-bar style="margin-top: 20px;" *ngIf="this.upService.uploadFinished" mode="determinate" value="{{progress.percentage}}">
+  </mat-progress-bar>
 </div>

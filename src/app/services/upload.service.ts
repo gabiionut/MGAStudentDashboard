@@ -49,7 +49,7 @@ export class UploadService {
   // writes the file details to the realtime db
   saveFileData(upload, userId: string, courseKey: string, courseType: string) {
     this.db.list(`users/${userId}/courses/${courseKey}/files/${courseType}Files`).push(upload).then(res => {
-      this.snackBar.open('Fisier adaugat! ✔️', null, {duration: 2000});
+      this.snackBar.open('Fisiere adaugate! ✔️', null, {duration: 2000});
     });
   }
 
