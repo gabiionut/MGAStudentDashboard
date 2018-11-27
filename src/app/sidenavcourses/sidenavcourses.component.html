@@ -48,13 +48,14 @@
         </mat-selection-list>
       </mat-expansion-panel>
     </mat-accordion>
+   
     <mat-menu #contextMenu="matMenu">
       <ng-template matMenuContent let-item="item">
         <button mat-menu-item [routerLink]="['/courses/',item.nume]" (click)="openDialog(item)">
           <mat-icon>edit</mat-icon>
           <span>Editeaza</span>
         </button>
-        <button mat-menu-item (click)="openDeleteDialog(item)">
+        <button mat-menu-item (click)="openDeleteFileDialog(item)">
           <mat-icon>delete</mat-icon>
           <span>Sterge</span>
         </button>

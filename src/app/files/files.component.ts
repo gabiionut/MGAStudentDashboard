@@ -28,15 +28,15 @@ export class FilesComponent implements OnInit {
   @ViewChild('inputFile') inputFile: ElementRef;
   @ViewChild('form') form: NgForm;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
-  courseKey: string;
-  courseType: string;
+  @Input() courseKey: string;
+  @Input() courseType: string;
 
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
   progress: { percentage: number } = { percentage: 0 };
   contextMenuPosition = { x: '0px', y: '0px' };
-  selectedFile: UploadFile;
+  @Input() selectedFile: UploadFile;
   filesUpload: any[];
   constructor(
     public upService: UploadService,
@@ -116,10 +116,10 @@ export class FilesComponent implements OnInit {
     this.selectedFile = item;
   }
 
-  delete() {
-    this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
-      this.courseKey, this.courseType, this.currentUser.name);
-  }
+  // delete() {
+  //   this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
+  //     this.courseKey, this.courseType, this.currentUser.name);
+  // }
 
   getUploadFile() {
     this.upService.getUpload(this.currentUser.ui, this.courseKey, this.courseType).snapshotChanges()

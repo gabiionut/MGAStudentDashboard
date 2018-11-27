@@ -53,6 +53,7 @@ import { UploadService } from './services/upload.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UploadFilesComponent } from './dialogs/upload-files/upload-files.component';
+import { FileDeleteComponent } from './message-alert/file-delete/file-delete.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { UploadFilesComponent } from './dialogs/upload-files/upload-files.compon
     FilesComponent,
     MainPageComponent,
     UploadFilesComponent,
+    FileDeleteComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -138,7 +140,8 @@ import { UploadFilesComponent } from './dialogs/upload-files/upload-files.compon
   entryComponents: [
     ChooseCcoursesStructureFormComponent,
     CourseDeleteComponent,
-    UploadFilesComponent
+    UploadFilesComponent,
+    FileDeleteComponent
   ],
 })
 export class AppModule { }

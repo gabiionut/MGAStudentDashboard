@@ -9,8 +9,9 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from '../models/user.model';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { UploadFile } from '../models/upload-file';
+import { FileDeleteComponent } from '../message-alert/file-delete/file-delete.component';
 
 @Component({
   selector: 'app-sidenavcourses',
@@ -84,8 +85,14 @@ export class SidenavcoursesComponent implements OnInit {
     dialogRef.componentInstance.course = course;
   }
 
+  openDeleteFileDialog(course: Course) {
+    const dialogRef = this.dialog.open(FileDeleteComponent, {
+      width: '250px',
+    });
+    dialogRef.componentInstance.course = course;
+  }
+
   onContextMenu(event: MouseEvent, item: Course) {
-    console.log('este');
     event.preventDefault();
     this.contextMenuPosition.x = event.clientX + 'px';
     this.contextMenuPosition.y = event.clientY + 'px';
