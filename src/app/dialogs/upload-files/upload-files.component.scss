@@ -38,3 +38,19 @@
 ::ng-deep .mat-progress-bar-buffer {
     background: #E4E8EB;
 }
+
+.borderActive {
+    border: 2px dashed map-get($colors,secondary) !important;
+}
+
+.textActive {
+    color: map-get($colors,secondary) !important;
+}
+
+.iconActive {
+    color: map-get($colors,secondary) !important;
+}
+
+.hidden {
+    visibility: hidden;
+}

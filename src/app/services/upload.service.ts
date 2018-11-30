@@ -18,6 +18,7 @@ export class UploadService {
 
 
   pushUpload(upload: UploadFile, userId, courseKey, userName, courseType, progress: { percentage: number }) {
+    console.log('Upload');
     this.uploadFinished = true;
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${userName}/${this.basePath}/${upload.file.name}`).put(upload.file);

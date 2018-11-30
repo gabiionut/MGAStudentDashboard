@@ -17,7 +17,8 @@ export class UploadFilesComponent implements OnInit {
   public currentUser: User;
   public courseKey: string;
   public courseType: string;
-  progress: { percentage: number } = { percentage: 0 };
+  public dropzoneActive = false;
+  public progress: { percentage: number } = { percentage: 0 };
 
 
   constructor(public snackBar: MatSnackBar, public upService: UploadService) { }
@@ -25,17 +26,17 @@ export class UploadFilesComponent implements OnInit {
   ngOnInit() {
   }
 
-  detectFiles(event) {
-    const files = event.target.files;
+  detectFiles(files) {
+    console.log(files);
     Array.prototype.forEach.call(files, file => {
       if (file.size > 15000000) {
         this.snackBar.open('Marimea maxima a unui fisier poate fi de 15 MB. ❌', null, { duration: 3000 });
         this.inputFile.nativeElement.value = '';
         return;
       }
-      this.selectedFiles = files;
-      this.uploadFiles();
     });
+    this.selectedFiles = files;
+    this.uploadFiles();
   }
 
   uploadFiles() {
@@ -46,6 +47,11 @@ export class UploadFilesComponent implements OnInit {
       this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.courseKey, this.currentUser.name, this.courseType,
         this.progress);
     });
+  }
+
+  dropzoneState($event: boolean) {
+    console.log($event);
+    this.dropzoneActive = $event;
   }
 
 }
