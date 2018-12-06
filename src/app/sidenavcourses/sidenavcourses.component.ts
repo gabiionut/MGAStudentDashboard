@@ -2,8 +2,8 @@ import { UploadService } from './../services/upload.service';
 import { CoursesService } from './../services/courses.service';
 import { Course } from '../models/course.model';
 import { ChooseCcoursesStructureFormComponent } from './../dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatMenuTrigger } from '@angular/material';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { MatDialog, MatMenuTrigger, MatSnackBar } from '@angular/material';
 import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -11,7 +11,7 @@ import { User } from '../models/user.model';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { UploadFile } from '../models/upload-file';
-import { FileDeleteComponent } from '../message-alert/file-delete/file-delete.component';
+
 
 @Component({
   selector: 'app-sidenavcourses',
@@ -30,9 +30,11 @@ export class SidenavcoursesComponent implements OnInit {
   contextMenuPosition = { x: '0px', y: '0px' };
   courseTypeSelected = false;
   filesUpload: any[];
+  @Input() courseKey: string;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
 
   constructor(
+    public snackBar: MatSnackBar,
     public dialog: MatDialog,
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
@@ -44,9 +46,9 @@ export class SidenavcoursesComponent implements OnInit {
 
   ngOnInit() {
     this.router.events
-        .filter(event => event instanceof NavigationEnd)
-        .subscribe((event: NavigationEnd) => {
-        });
+      .filter(event => event instanceof NavigationEnd)
+      .subscribe((event: NavigationEnd) => {
+      });
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
       this.coursesService.getAll(this.currentUser.ui).snapshotChanges()
@@ -83,13 +85,12 @@ export class SidenavcoursesComponent implements OnInit {
       width: '250px',
     });
     dialogRef.componentInstance.course = course;
-  }
+    dialogRef.componentInstance.message = 'Folderul va fi sters permanent! Doriti sa stergeti?';
 
-  openDeleteFileDialog(course: Course) {
-    const dialogRef = this.dialog.open(FileDeleteComponent, {
-      width: '250px',
+    dialogRef.componentInstance.delete.subscribe(() => {
+      this.coursesService.delete(course.key, this.currentUser.ui);
+      this.snackBar.open('Fisier sters cu succes ✔️', null, { duration: 3000 });
     });
-    dialogRef.componentInstance.course = course;
   }
 
   onContextMenu(event: MouseEvent, item: Course) {

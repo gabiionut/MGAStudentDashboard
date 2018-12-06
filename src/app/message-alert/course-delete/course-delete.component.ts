@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material';
 import { CoursesService } from 'src/app/services/courses.service';
 import { Course } from 'src/app/models/course.model';
@@ -17,7 +17,8 @@ export class CourseDeleteComponent implements OnInit  {
   dialog: MatDialog;
   currentUser: User;
   currentUserUid: string;
-
+  message: string;
+  @Output() delete = new EventEmitter();
   constructor(
     public dialogRef: MatDialogRef<CourseDeleteComponent>,
     public coursesService: CoursesService,
@@ -41,8 +42,8 @@ export class CourseDeleteComponent implements OnInit  {
     this.dialogRef.close();
   }
 
-  delete() {
-    this.coursesService.delete(this.course.key, this.currentUser.ui);
+  onDelete() {
+    this.delete.emit();
     this.dialogRef.close();
   }
 }

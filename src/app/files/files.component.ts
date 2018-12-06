@@ -13,6 +13,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/filter';
 import { UploadFilesComponent } from '../dialogs/upload-files/upload-files.component';
+import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 
 @Component({
   selector: 'app-files',
@@ -24,7 +25,6 @@ export class FilesComponent implements OnInit {
   courses: Course[];
   @Input() currentUser: User;
   @Input() course: Course;
-  // @Input() fileUpload: any[];
   @ViewChild('inputFile') inputFile: ElementRef;
   @ViewChild('form') form: NgForm;
   @ViewChild(MatMenuTrigger) contextMenu: MatMenuTrigger;
@@ -53,7 +53,7 @@ export class FilesComponent implements OnInit {
   ngOnInit() {
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
-      this.route.paramMap.subscribe((params:  ParamMap) => {
+      this.route.paramMap.subscribe((params: ParamMap) => {
         this.courseKey = params['params'].key;
         this.courseType = params['params'].type;
       });
@@ -90,10 +90,21 @@ export class FilesComponent implements OnInit {
     this.selectedFile = item;
   }
 
-  // delete() {
-  //   this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
-  //     this.courseKey, this.courseType, this.currentUser.name);
-  // }
+  openDeleteFileDialog(course: Course) {
+    const dialogRef = this.dialog.open(CourseDeleteComponent, {
+      width: '250px',
+    });
+    dialogRef.componentInstance.course = course;
+    dialogRef.componentInstance.message = 'Fisierul va fi sters permanent! Doriti sa stergeti?';
+
+    dialogRef.componentInstance.delete.subscribe(() => {
+      this.upService.deleteFileUpload(this.selectedFile.key, this.selectedFile.name, this.currentUser.ui,
+        this.courseKey, this.courseType, this.currentUser.name);
+      this.snackBar.open('Fisier sters cu succes ✔️', null, { duration: 3000 });
+    });
+  }
+
+
 
   getUploadFile() {
     this.upService.getUpload(this.currentUser.ui, this.courseKey, this.courseType).snapshotChanges()
