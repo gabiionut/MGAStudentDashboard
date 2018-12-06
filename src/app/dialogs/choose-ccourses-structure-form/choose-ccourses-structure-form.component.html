@@ -5,8 +5,8 @@
       <mat-form-field>
         <input matInput [(ngModel)]="course.nume" name="nume" type="text" placeholder="Nume materie" required>
        </mat-form-field>
-      <mat-checkbox [(ngModel)]="course.curs" name="curs" value="Curs" aria-required="true">Curs</mat-checkbox>
-      <mat-checkbox [(ngModel)]="course.laborator" name="laborator" value="Laborator">Laborator</mat-checkbox>
+      <mat-checkbox [(ngModel)]="course.curs" name="curs" value="Curs" [required]='true'>Curs</mat-checkbox>
+      <mat-checkbox [(ngModel)]="course.laborator" name="laborator" value="Laborator" >Laborator</mat-checkbox>
       <mat-checkbox [(ngModel)]="course.seminar" name="seminar" value="Seminar">Seminar</mat-checkbox>
       <mat-checkbox [(ngModel)]="course.proiect" name="proiect" value="Laborator">Proiect</mat-checkbox>
       <div mat-dialog-actions>
