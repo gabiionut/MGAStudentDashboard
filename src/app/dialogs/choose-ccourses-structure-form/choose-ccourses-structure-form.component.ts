@@ -2,7 +2,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { ActivatedRoute } from '@angular/router';
 import { CoursesService } from './../../services/courses.service';
 import { Component, Inject, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Course } from 'src/app/models/course.model';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { User } from 'src/app/models/user.model';

@@ -51,7 +51,7 @@
    
     <mat-menu #contextMenu="matMenu">
       <ng-template matMenuContent let-item="item">
-        <button mat-menu-item [routerLink]="['/courses/',item.nume]" (click)="openDialog(item)">
+        <button mat-menu-item [routerLink]="['/cursuri/',item.nume]" (click)="openDialog(item)">
           <mat-icon>edit</mat-icon>
           <span>Editeaza</span>
         </button>

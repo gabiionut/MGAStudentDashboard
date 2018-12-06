@@ -7,7 +7,7 @@ export class Course {
     proiect: boolean;
 
     constructor() {
-        this.curs = false;
+        this.curs = true;
         this.laborator = false;
         this.seminar = false;
         this.proiect = false;
