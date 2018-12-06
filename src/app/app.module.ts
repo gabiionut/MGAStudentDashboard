@@ -150,6 +150,6 @@ import { FileDropDirective } from './directives/file-drop.directive';
     CourseDeleteComponent,
     UploadFilesComponent,
     FileDeleteComponent
-  ],
+ ],
 })
 export class AppModule { }
