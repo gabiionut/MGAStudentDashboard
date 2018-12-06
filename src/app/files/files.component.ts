@@ -76,32 +76,6 @@ export class FilesComponent implements OnInit {
     return this.angularFireDatabase.object(`users/${currentUserUid}`);
   }
 
-  detectFiles(event) {
-    const files = event.target.files;
-    Array.prototype.forEach.call(files, file => {
-      if (file.size > 15000000) {
-        this.snackBar.open('Marimea maxima a unui fisier poate fi de 15 MB. ❌', null, { duration: 3000 });
-        this.inputFile.nativeElement.value = '';
-        return;
-      }
-      this.selectedFiles = files;
-    });
-  }
-
-  uploadFiles() {
-    const file = this.selectedFiles;
-    const filesIndex = _.range(file.length);
-    _.each(filesIndex, (idx) => {
-      this.currentUpload = new UploadFile(file[idx]);
-      this.upService.pushUpload(this.currentUpload, this.currentUser.ui, this.courseKey, this.currentUser.name, this.courseType,
-        this.progress);
-    });
-    this.reset();
-  }
-  reset() {
-    this.inputFile.nativeElement.value = '';
-  }
-
   openDownloadFile(selectedFile) {
     const file = selectedFile ? selectedFile : this.selectedFile;
     window.open(file.url, '_blank');
@@ -137,5 +111,9 @@ export class FilesComponent implements OnInit {
     const dialogRef = this.dialog.open(UploadFilesComponent, {
       width: '750px',
     });
+    dialogRef.componentInstance.currentUser = this.currentUser;
+    dialogRef.componentInstance.courseKey = this.courseKey;
+    dialogRef.componentInstance.courseType = this.courseType;
+
   }
 }

@@ -1,18 +1,5 @@
 <mat-drawer-container class="page-container">
   <mat-drawer-content class="left-side">
-    <form #form>
-      <label>
-        <input #inputFile type="file" multiple size="15000" (change)="detectFiles($event)">
-      </label>
-
-      <button [disabled]="!selectedFiles" (click)="uploadFiles()">
-
-        Upload Files
-      </button>
-    </form>
-    <mat-progress-bar *ngIf="this.upService.uploadFinished" mode="determinate" value="{{progress.percentage}}">
-    </mat-progress-bar>
-
     <div class="file-card-display " fxLayout="row wrap" fxLayoutAlign="space-around start" fxLayout.lt-sm="column"
       fxLayoutGap="10px">
       <mat-card *ngFor="let file of filesUpload" class="example-card" style="width: 100px; margin-top: 15px !important;"

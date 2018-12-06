@@ -13,3 +13,44 @@
     font-size: 25px;
     color: map-get($colors,primary)
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.choose-btn {
+    color: white; 
+    margin-top: 13px; 
+    padding: 10px;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: #007ac1;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+}
+
+.borderActive {
+    border: 2px dashed map-get($colors,secondary) !important;
+}
+
+.textActive {
+    color: map-get($colors,secondary) !important;
+}
+
+.iconActive {
+    color: map-get($colors,secondary) !important;
+}
+
+.hidden {
+    visibility: hidden;
+}

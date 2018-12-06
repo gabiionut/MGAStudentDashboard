@@ -53,11 +53,7 @@ import { UploadService } from './services/upload.service';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UploadFilesComponent } from './dialogs/upload-files/upload-files.component';
-<<<<<<< HEAD
 import { FileDeleteComponent } from './message-alert/file-delete/file-delete.component';
-=======
-import { FileDropDirective } from './directives/file-drop.directive';
->>>>>>> 055eed19e605614a15f252a3b70bae0f2d9db65a
 
 @NgModule({
   declarations: [
@@ -73,11 +69,7 @@ import { FileDropDirective } from './directives/file-drop.directive';
     FilesComponent,
     MainPageComponent,
     UploadFilesComponent,
-<<<<<<< HEAD
     FileDeleteComponent,
-=======
-    FileDropDirective
->>>>>>> 055eed19e605614a15f252a3b70bae0f2d9db65a
   ],
   imports: [
     FlexLayoutModule,

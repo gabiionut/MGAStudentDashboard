@@ -18,6 +18,7 @@ export class UploadService {
 
 
   pushUpload(upload: UploadFile, userId, courseKey, userName, courseType, progress: { percentage: number }) {
+    console.log('Upload');
     this.uploadFinished = true;
     const storageRef = firebase.storage().ref();
     const uploadTask = storageRef.child(`${userName}/${this.basePath}/${upload.file.name}`).put(upload.file);
@@ -49,7 +50,7 @@ export class UploadService {
   // writes the file details to the realtime db
   saveFileData(upload, userId: string, courseKey: string, courseType: string) {
     this.db.list(`users/${userId}/courses/${courseKey}/files/${courseType}Files`).push(upload).then(res => {
-      this.snackBar.open('Fisier adaugat! ✔️', null, {duration: 2000});
+      this.snackBar.open('Fisiere adaugate! ✔️', null, {duration: 2000});
     });
   }
 
