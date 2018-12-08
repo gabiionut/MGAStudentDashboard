@@ -39,7 +39,7 @@ export class SidenavcoursesComponent implements OnInit {
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase,
-    private router: Router,
+    public router: Router,
     private upService: UploadService,
 
   ) { }
