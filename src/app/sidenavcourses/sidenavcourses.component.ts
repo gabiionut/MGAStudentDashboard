@@ -11,6 +11,8 @@ import { User } from '../models/user.model';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 import { Router, NavigationEnd } from '@angular/router';
 import { UploadFile } from '../models/upload-file';
+import { MediaChange, ObservableMedia } from '@angular/flex-layout';
+import { SidenavService } from '../services/sidenav.service';
 
 
 @Component({
@@ -20,7 +22,8 @@ import { UploadFile } from '../models/upload-file';
 })
 export class SidenavcoursesComponent implements OnInit {
 
-
+  watcher;
+  over: string;
   courses$: Observable<Course[]>;
   courses: Course[];
   currentUser: User;
@@ -41,8 +44,19 @@ export class SidenavcoursesComponent implements OnInit {
     private angularFireDatabase: AngularFireDatabase,
     public router: Router,
     private upService: UploadService,
-
-  ) { }
+    media: ObservableMedia,
+    public sidenavService: SidenavService
+  ) {
+      this.watcher = media.subscribe((change: MediaChange) => {
+        if (change.mqAlias === 'sm' || change.mqAlias === 'xs') {
+          this.sidenavService.opened = false;
+          this.over = 'over';
+        } else {
+          this.sidenavService.opened = true;
+          this.over = 'side';
+        }
+      });
+    }
 
   ngOnInit() {
     this.router.events

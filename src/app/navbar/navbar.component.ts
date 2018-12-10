@@ -1,6 +1,7 @@
 import { AuthenticationService } from './../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SidenavService } from '../services/sidenav.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent {
-  constructor(public authService: AuthenticationService, private route: Router) { }
+  constructor(public authService: AuthenticationService, private route: Router, public sidenavService: SidenavService) { }
 
   logout() {
     this.authService.logout();

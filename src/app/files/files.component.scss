@@ -43,3 +43,9 @@ mat-card {
 .fab-button:hover {
     color: map-get($colors,secondary);
 }
+
+@media screen and (max-width: 959px) {
+    .page-container {
+        margin-left: 0px !important;
+    }
+}

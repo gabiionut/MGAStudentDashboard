@@ -13,3 +13,9 @@
     text-align: center;
     font-size: 150px;
   }
+
+@media screen and (max-width: 959px) {
+  .page-container {
+    margin-left: 0px !important;
+  }
+}

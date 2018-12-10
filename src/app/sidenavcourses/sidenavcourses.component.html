@@ -1,18 +1,16 @@
-<mat-drawer class="left-side" mode="side" opened [disableClose]="true">
-  <div>
-    <mat-accordion>
-      <mat-expansion-panel *ngIf="router.url == '/' ">
-        <mat-expansion-panel-header class="expanation-panel-home" routerLink="/cursuri">
-          <mat-panel-title>
-            Cursuri
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
-    </mat-accordion>
-
-  </div>
+<mat-sidenav #sidenav [(mode)]="side" [(opened)]="sidenavService.opened" class="bottom-to-top">
+  <mat-accordion>
+    <mat-expansion-panel *ngIf="router.url == '/' ">
+      <mat-expansion-panel-header class="expanation-panel-home" routerLink="/cursuri">
+        <mat-panel-title>
+          Cursuri
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
 
   <div *ngIf="router.url.startsWith('/cursuri')">
+
     <button mat-button class="addCourseButton" (click)="openDialog()">Adauga curs</button>
     <mat-accordion>
       <mat-expansion-panel *ngFor="let c of courses">
@@ -48,7 +46,7 @@
         </mat-selection-list>
       </mat-expansion-panel>
     </mat-accordion>
-   
+
     <mat-menu #contextMenu="matMenu">
       <ng-template matMenuContent let-item="item">
         <button mat-menu-item (click)="openDialog(item)">
@@ -62,4 +60,4 @@
       </ng-template>
     </mat-menu>
   </div>
-</mat-drawer>
+</mat-sidenav>
