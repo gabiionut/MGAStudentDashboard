@@ -2,26 +2,18 @@
   <button mat-icon-button (click)="sidenavService.toggle()" fxShow.sm="true" fxShow.gt-sm="false">
     <mat-icon>menu</mat-icon>
   </button>
-  <mat-icon class="logo-icon">home</mat-icon>
+  <mat-icon  class="material-icons">local_hospital</mat-icon>
   <div class="logo" routerLink="/">
-    Student DashBoard
+    StudAid
   </div>
 
   <span class="fill-remaining-space"></span>
   <span>
-    <span class="user-name" *ngIf="authService.user$ | async as user">{{ user.displayName }}</span>
+    <span class="user-name" *ngIf="authService.user$ | async as user" fxShow fxHide.xs="true" >{{ user.displayName }}</span>
     <button class="navbar-menu" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item>
-        <mat-icon>dialpad</mat-icon>
-        <span>Redial</span>
-      </button>
-      <button mat-menu-item disabled>
-        <mat-icon>voicemail</mat-icon>
-        <span>Check voicemail</span>
-      </button>
       <button mat-menu-item (click)="logout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Log out</span>

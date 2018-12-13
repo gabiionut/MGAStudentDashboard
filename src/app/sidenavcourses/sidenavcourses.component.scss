@@ -18,9 +18,12 @@
 
   .addCourseButton {
     color: map-get($colors,text-primary);
+    width: 230px;
+    
 
     &:hover {
-      width: 220px;
+      align-content: center;
+      width: 230px;
       background-color: map-get($colors,secondary);
     }
   }
