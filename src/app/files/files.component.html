@@ -1,6 +1,6 @@
 <mat-drawer-container class="page-container">
   <mat-drawer-content class="left-side">
-    <div class="file-card-display " fxLayout="row wrap" fxLayoutAlign="space-around start" fxLayout.lt-sm="column"
+    <div class="file-card-display " fxLayout="row wrap" fxLayoutAlign="space-around start" fxLayout.lt-xs="column"
       fxLayoutGap="10px">
       <mat-card *ngFor="let file of filesUpload" class="example-card" style="width: 100px; margin-top: 15px !important;"
         (click)="openDownloadFile(file)" (contextmenu)="onContextMenuFile($event, file)">
