@@ -1,7 +1,7 @@
 @import "../_variables.scss";
 
 .file-card-display {
-    margin-left:70px !important;
+    margin-left: 70px!important;
 }
 
 mat-card {
@@ -13,7 +13,7 @@ mat-card {
 .mat-card-title {
     font-weight:bold;
     font-size: 12.5px; 
-    height: 28px;
+    height: 30px;
     overflow: hidden;
 }
 .page-container {
@@ -21,7 +21,7 @@ mat-card {
     top: 60px;
     bottom: 0;
     left: 0;
-    right: 50px;
+    right: 0;
     background: #eee;  
     margin-top: 4px;
     margin-left: 220px;
