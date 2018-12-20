@@ -56,7 +56,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UploadFilesComponent } from './dialogs/upload-files/upload-files.component';
 import { FileDropDirective } from './directives/file-drop.directive';
-import { PaginationComponent } from './files/pagination/pagination.component';
+
 
 @NgModule({
   declarations: [
@@ -73,7 +73,6 @@ import { PaginationComponent } from './files/pagination/pagination.component';
     MainPageComponent,
     UploadFilesComponent,
     FileDropDirective,
-    PaginationComponent
   ],
   imports: [
     MatPaginatorModule,

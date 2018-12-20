@@ -1,8 +1,8 @@
 <mat-drawer-container class="page-container">
   <mat-drawer-content class="left-side">
-    <div class="file-card-display " style="display: flex; flex-wrap: wrap;" fxLayout="row wrap"  fxLayout.lt-xs="column"
+    <div class="file-card-display " style="display: flex; flex-wrap: wrap;" fxLayout="row wrap" fxLayout.lt-xs="column"
       fxLayoutGap="10px">
-      <mat-card *ngFor="let file of filesUpload" class="example-card" style="width: 100px; margin-top: 15px !important;"
+      <mat-card *ngFor="let file of filesShow" class="example-card" style="width: 100px; margin-top: 15px !important;"
         (click)="openDownloadFile(file)" (contextmenu)="onContextMenuFile($event, file)">
         <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
           [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
@@ -24,9 +24,17 @@
         </mat-menu>
       </mat-card>
     </div>
-    <div fxShow fxHide.xs class="pagination">
-    <app-pagination></app-pagination>
-    </div>
+    
+      <mat-paginator fxShow fxHide.xs class="pagination"
+        [length] = "length" 
+        [pageSize]="pageSizeOption" 
+        [pageIndex]="pageIndex"
+        [pageSizeOptions]="pageSizeOption" 
+        (page)="onPage($event)">
+      </mat-paginator>
+
   </mat-drawer-content>
 </mat-drawer-container>
-<button (click)="openUploadDialog()" class="fab-button" mat-fab><mat-icon>add</mat-icon></button>
+<button (click)="openUploadDialog()" class="fab-button" mat-fab>
+  <mat-icon>add</mat-icon>
+</button>
