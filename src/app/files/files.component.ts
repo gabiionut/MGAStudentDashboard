@@ -6,7 +6,7 @@ import { UploadService } from '../services/upload.service';
 import { ViewChild } from '@angular/core';
 import * as _ from 'lodash';
 import { Router, NavigationEnd, ActivatedRoute, NavigationStart, ParamMap } from '@angular/router';
-import { MatMenuTrigger, MatSnackBar, MatDialog } from '@angular/material';
+import { MatMenuTrigger, MatSnackBar, MatDialog, PageEvent } from '@angular/material';
 import { NgForm } from '@angular/forms';
 import { CoursesService } from '../services/courses.service';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -31,6 +31,10 @@ export class FilesComponent implements OnInit {
   @Input() courseKey: string;
   @Input() courseType: string;
 
+  public pageIndex = 0;
+  public pageSize;
+  public length;
+  public pageSizeOption = [5, 10, 15, 20, 30];
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
@@ -38,6 +42,9 @@ export class FilesComponent implements OnInit {
   contextMenuPosition = { x: '0px', y: '0px' };
   @Input() selectedFile: UploadFile;
   filesUpload: any[];
+  filesShow: any[];
+
+
   constructor(
     public upService: UploadService,
     public router: Router,
@@ -69,6 +76,7 @@ export class FilesComponent implements OnInit {
           this.getUploadFile();
         });
     });
+
   }
 
   getCurrentUserProfile() {
@@ -115,6 +123,9 @@ export class FilesComponent implements OnInit {
             ...item.payload.val()
           };
         });
+        this.length = this.filesUpload.length;
+        this.updateFilesList();
+        console.log(this.filesShow.length);
       });
   }
 
@@ -126,5 +137,15 @@ export class FilesComponent implements OnInit {
     dialogRef.componentInstance.courseKey = this.courseKey;
     dialogRef.componentInstance.courseType = this.courseType;
 
+  }
+
+  onPage(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.updateFilesList();
+  }
+
+  updateFilesList() {
+    this.filesShow = this.filesUpload.slice(this.pageIndex * this.pageSize, this.pageIndex * this.pageSize + this.pageSize);
   }
 }

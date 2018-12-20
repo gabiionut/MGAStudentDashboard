@@ -22,6 +22,8 @@ import { SidenavcoursesComponent } from './sidenavcourses/sidenavcourses.compone
 import { NavbarComponent } from './navbar/navbar.component';
 import { ChooseCcoursesStructureFormComponent } from './dialogs/choose-ccourses-structure-form/choose-ccourses-structure-form.component';
 
+
+import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
@@ -55,6 +57,7 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { UploadFilesComponent } from './dialogs/upload-files/upload-files.component';
 import { FileDropDirective } from './directives/file-drop.directive';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,9 +72,10 @@ import { FileDropDirective } from './directives/file-drop.directive';
     FilesComponent,
     MainPageComponent,
     UploadFilesComponent,
-    FileDropDirective
+    FileDropDirective,
   ],
   imports: [
+    MatPaginatorModule,
     FlexLayoutModule,
     MatCardModule,
     MatProgressBarModule,
