@@ -32,9 +32,9 @@ export class FilesComponent implements OnInit {
   @Input() courseType: string;
 
   public pageIndex = 0;
-  public pageSize;
+  public pageSize = 40;
   public length;
-  public pageSizeOption = [5, 10, 15, 20, 30];
+  public pageSizeOption = [40, 10, 20, 30];
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
@@ -125,7 +125,6 @@ export class FilesComponent implements OnInit {
         });
         this.length = this.filesUpload.length;
         this.updateFilesList();
-        console.log(this.filesShow.length);
       });
   }
 

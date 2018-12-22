@@ -24,17 +24,16 @@
         </mat-menu>
       </mat-card>
     </div>
-    
-      <mat-paginator fxShow fxHide.xs class="pagination"
+    <mat-paginator fxShow fxHide.xs class="pagination"
         [length] = "length" 
         [pageSize]="pageSizeOption" 
         [pageIndex]="pageIndex"
         [pageSizeOptions]="pageSizeOption" 
         (page)="onPage($event)">
       </mat-paginator>
-
   </mat-drawer-content>
 </mat-drawer-container>
 <button (click)="openUploadDialog()" class="fab-button" mat-fab>
   <mat-icon>add</mat-icon>
 </button>
+
