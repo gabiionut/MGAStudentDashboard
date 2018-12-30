@@ -52,11 +52,6 @@
        }
   }
 
-
-  .active {
-    background-color: map-get($colors,secondary) !important;
-  }
-
   mat-selection-list >  mat-list-option{
     text-decoration: none;
     background-color: map-get($colors, primary);

@@ -5,7 +5,9 @@ import { CoursesService } from './services/courses.service';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Validators} from '@angular/forms';
+
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AngularFireModule } from 'angularfire2';
@@ -56,6 +58,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { MainPageComponent } from './main-page/main-page.component';
 import { UploadFilesComponent } from './dialogs/upload-files/upload-files.component';
 import { FileDropDirective } from './directives/file-drop.directive';
+import { RegisterLoginComponent } from './login/register-login/register-login.component';
 
 
 @NgModule({
@@ -73,8 +76,10 @@ import { FileDropDirective } from './directives/file-drop.directive';
     MainPageComponent,
     UploadFilesComponent,
     FileDropDirective,
+    RegisterLoginComponent,
   ],
   imports: [
+    ReactiveFormsModule,
     MatPaginatorModule,
     FlexLayoutModule,
     MatCardModule,

@@ -1,0 +1,44 @@
+<div class="registerLoginContainer">
+    <div class="buttons" fxLayout="row">
+        <button mat-button class="loginButton" (click)="showLogin()">Log-in</button>
+        <button mat-button class="registerButton" (click)="showRegister()">Register</button>
+    </div>
+    <hr>
+    <form *ngIf="register" class="register" #f="ngForm" (ngSubmit)="add(f.value)" fxLayout="column">
+        <mat-form-field class="formField">
+            <input matInput name="name" placeholder="Nume" required>
+        </mat-form-field>
+        <mat-form-field class="formField">
+            <input matInput placeholder="Email" [formControl]="emailFormControl" required>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Introduceti o adresa de email valida
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Acest camp este <strong>obligatoriu</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <button mat-button>Register</button>
+    </form>
+
+    <form *ngIf="login" fxLayout="column" class="login">
+        <mat-form-field class="formField">
+            <input matInput placeholder="Email" [formControl]="emailFormControl" required>
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                Introduceti o adresa de email valida
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+                Acest camp este <strong>obligatoriu</strong>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+            <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </mat-form-field>
+        <button mat-button>Log in</button>
+    </form>
+
+</div>
