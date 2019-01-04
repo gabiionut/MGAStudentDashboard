@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
+import { AuthenticationService } from 'src/app/services/authentication.service';
+import { User } from 'src/app/models/user.model';
+import { AngularFireAuth } from 'angularfire2/auth';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-register-login',
   templateUrl: './register-login.component.html',
@@ -7,7 +12,12 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class RegisterLoginComponent {
 
-  constructor() { }
+  user: User = new User();
+  password: string;
+  currentUserUid: string;
+  constructor(
+    public auth: AuthenticationService,
+    ) { }
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -26,5 +36,13 @@ export class RegisterLoginComponent {
   showLogin() {
     this.register = false;
     this.login = true;
+  }
+
+  add() {
+    this.auth.register(this.user.email, this.password);
+  }
+
+  loginEmail() {
+    this.auth.loginWithEmailPassword(this.user.email, this.password);
   }
 }
