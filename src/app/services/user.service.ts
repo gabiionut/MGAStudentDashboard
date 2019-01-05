@@ -17,9 +17,11 @@ export class UserService {
     });
   }
 
-  saveEmailPassword(user: firebase.User, name) {
-    this.db.object('/users/' + user.uid).update({
-      name: name,
+  saveEmailPassword(userF: firebase.User, user: User) {
+    this.db.object('/users/' + userF.uid).update({
+      name: user.name,
+      email: user.email,
+      ui: userF.uid
     });
   }
 }
