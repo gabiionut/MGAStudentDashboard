@@ -27,7 +27,7 @@ import { ChooseCcoursesStructureFormComponent } from './dialogs/choose-ccourses-
 
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatInputModule} from '@angular/material';
+import {MatInputModule, MatTabsModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatDialogModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
@@ -103,6 +103,7 @@ import { RegisterLoginComponent } from './login/register-login/register-login.co
     MatToolbarModule,
     MatMenuModule,
     MatButtonModule,
+    MatTabsModule,
     BrowserModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),

@@ -17,3 +17,7 @@
 .bg-primary {
     background-color: map-get($colors,primary);
 }
+
+.mat-tab-body-content {
+    overflow: hidden !important;
+}

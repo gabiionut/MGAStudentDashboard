@@ -1,45 +1,47 @@
 <div class="registerLoginContainer">
-    <div class="buttons" fxLayout="row">
-        <button mat-button class="loginButton" (click)="showLogin()">Log-in</button>
-        <button mat-button class="registerButton" (click)="showRegister()">Register</button>
-    </div>
-    <hr>
-    <form *ngIf="register" class="register" #f="ngForm" (ngSubmit)="add()" fxLayout="column">
-        <mat-form-field class="formField">
-            <input matInput [(ngModel)]=user.name name="name" placeholder="Nume" required>
-        </mat-form-field>
-        <mat-form-field class="formField">
-            <input matInput [(ngModel)]=user.email name="email" placeholder="Email" [formControl]="emailFormControl" required>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                Introduceti o adresa de email valida
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-                Acest camp este <strong>obligatoriu</strong>
-            </mat-error>
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-            <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </mat-form-field>
-        <button mat-button>Register</button>
-    </form>
-
-    <div>
-        <form *ngIf="login" fxLayout="column" class="login">
-            <mat-form-field class="formField">
-                <input matInput [(ngModel)]=user.email name="email" placeholder="Email" [formControl]="emailFormControl" required>
-                <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-                    Introduceti o adresa de email valida
-                </mat-error>
-                <mat-error *ngIf="emailFormControl.hasError('required')">
-                    Acest camp este <strong>obligatoriu</strong>
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field>
-                <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
-                <mat-icon matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </mat-form-field>
-            <button mat-button (click)="loginEmail()">Log in</button>
-        </form>
-    </div>
+    <mat-tab-group>
+        <mat-tab label="Login">
+            <form fxLayout="column" class="login">
+                <mat-form-field class="formField">
+                    <input matInput [(ngModel)]=user.email name="email" placeholder="Email" [formControl]="emailFormControl"
+                        required>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Introduceti o adresa de email valida
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Acest camp este <strong>obligatoriu</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                    <mat-icon class="show-password" matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                </mat-form-field>
+                <button mat-button (click)="loginEmail()">Log in</button>
+            </form>
+        </mat-tab>
+        <mat-tab label="Register">
+            <form class="register" #f="ngForm" (ngSubmit)="add()" fxLayout="column">
+                <mat-form-field class="formField">
+                    <input matInput [(ngModel)]=user.name name="name" placeholder="Nume" required>
+                </mat-form-field>
+                <mat-form-field class="formField">
+                    <input matInput [(ngModel)]=user.email name="email" placeholder="Email" [formControl]="emailFormControl"
+                        required>
+                    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                        Introduceti o adresa de email valida
+                    </mat-error>
+                    <mat-error *ngIf="emailFormControl.hasError('required')">
+                        Acest camp este <strong>obligatoriu</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                    <mat-icon class="show-password" matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' :
+                        'visibility'}}</mat-icon>
+                </mat-form-field>
+                <button mat-button>Register</button>
+            </form>
+        </mat-tab>
+    </mat-tab-group>
 </div>
