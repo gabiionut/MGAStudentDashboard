@@ -71,6 +71,10 @@
     color: map-get($colors, text-primary) !important;
   }
 
+  .sub-menu-items {
+    padding-left: 30px !important;
+  }
+
   ::ng-deep .mat-expansion-panel-body{
     background-color: map-get($colors, primary);
     color: map-get($colors, text-primary);
