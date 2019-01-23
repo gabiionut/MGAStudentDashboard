@@ -10,8 +10,8 @@
       <mat-checkbox [(ngModel)]="course.seminar" name="seminar" value="Seminar">Seminar</mat-checkbox>
       <mat-checkbox [(ngModel)]="course.proiect" name="proiect" value="Laborator">Proiect</mat-checkbox>
       <div mat-dialog-actions>
-        <button mat-button *ngIf="isNew">Adauga</button>
-        <button mat-button type="button" (click)="update()" *ngIf="!isNew">Actualizeaza</button>
+        <button mat-button *ngIf="isNew" [disabled]='!f.valid'>Adauga</button>
+        <button mat-button type="button" (click)="update()" *ngIf="!isNew" [disabled]='!f.valid'>Actualizeaza</button>
         <button type="button" mat-button (click)="closeDialog()">Anulare</button>
       </div>
       <br>

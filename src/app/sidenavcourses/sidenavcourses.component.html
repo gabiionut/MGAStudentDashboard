@@ -1,4 +1,4 @@
-<mat-sidenav #sidenav [(mode)]="side"  [(opened)]="sidenavService.opened" class="bottom-to-top">
+<mat-sidenav #sidenav [(mode)]="side" [(opened)]="sidenavService.opened" class="bottom-to-top">
   <mat-accordion>
     <mat-expansion-panel *ngIf="router.url == '/' ">
       <mat-expansion-panel-header class="expanation-panel-home" routerLink="/cursuri">
@@ -23,25 +23,37 @@
           </div>
         </mat-expansion-panel-header>
         <mat-selection-list role="list">
-          <mat-list-option *ngIf="c.curs" (contextmenu)="onContextMenu($event, c)" [routerLink]="['cursuri', c.key,'curs']"
+          <mat-list-option class="sub-menu-items" *ngIf="c.curs" (contextmenu)="onContextMenu($event, c)" [routerLink]="['cursuri', c.key,'curs']"
             routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer"
             (click)="onCourseTypeClick(c, 'curs')">
-            <span>Curs</span>
+            <span>
+              <i class="fa fa-book"></i>
+              Curs
+            </span>
           </mat-list-option>
-          <mat-list-option *ngIf="c.laborator" (contextmenu)="onContextMenu($event, c)" [routerLink]="['cursuri', c.key,'laborator']"
-            routerLinkActive="active" mat-list-option role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')"
-            [routerLinkActiveOptions]="{exact: true}">
-            <span>Laborator</span>
+          <mat-list-option class="sub-menu-items" *ngIf="c.laborator" (contextmenu)="onContextMenu($event, c)"
+            [routerLink]="['cursuri', c.key,'laborator']" routerLinkActive="active" mat-list-option role="listitem"
+            style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')" [routerLinkActiveOptions]="{exact: true}">
+            <span>
+              <i class="fa fa-flask"></i>
+              Laborator
+            </span>
           </mat-list-option>
-          <mat-list-option *ngIf="c.seminar" (contextmenu)="onContextMenu($event, c)" mat-list-option [routerLink]="['cursuri', c.key,'seminar']"
-            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer"
-            (click)="onCourseTypeClick(c, 'seminar')">
-            <span>Seminar</span>
+          <mat-list-option class="sub-menu-items" *ngIf="c.seminar" (contextmenu)="onContextMenu($event, c)"
+            mat-list-option [routerLink]="['cursuri', c.key,'seminar']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')">
+            <span>
+                <i class="fas fa-pencil-alt"></i>
+              Seminar
+            </span>
           </mat-list-option>
-          <mat-list-option *ngIf="c.proiect" (contextmenu)="onContextMenu($event, c)" mat-list-option [routerLink]="['cursuri', c.key,'proiect']"
-            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer"
-            (click)="onCourseTypeClick(c, 'proiect')">
-            <span>Proiect</span>
+          <mat-list-option class="sub-menu-items" *ngIf="c.proiect" (contextmenu)="onContextMenu($event, c)"
+            mat-list-option [routerLink]="['cursuri', c.key,'proiect']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')">
+            <span>
+                <i class="fas fa-clipboard-list"></i>
+              Proiect
+            </span>
           </mat-list-option>
         </mat-selection-list>
       </mat-expansion-panel>
