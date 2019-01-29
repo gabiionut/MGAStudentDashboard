@@ -18,7 +18,8 @@ export class AuthenticationService {
      private route: ActivatedRoute,
      public snackBar: MatSnackBar
      ) {
-    this.user$ = afAuth.authState;
+
+      this.user$ = afAuth.authState;
    }
    // Login with Google
   login() {
@@ -32,22 +33,27 @@ export class AuthenticationService {
   // Register with email and password
 
   register(email, password) {
-    this.afAuth.auth.createUserWithEmailAndPassword(email, password).then(function() {
-      // Email sent.
-    }).catch(function(error) {
+    this.afAuth.auth.createUserWithEmailAndPassword(email, password).catch(function(error) {
       // An error happened.
-     // this.snackBar.open('A aparut o erare in timpul creerii contului! Incercati mai tarziu ❌', null, {duration: 4000});
     });
   }
 
   // login with email
   loginWithEmailPassword(email, password) {
     this.afAuth.auth.signInAndRetrieveDataWithEmailAndPassword(email, password).then(function() {
-      // Email sent.
+
     }).catch(function(error) {
       // An error happened.
-      // this.snackBar.open('A aparut o erare in timpul creerii contului! Incercati mai tarziu ❌', null, {duration: 4000});
+      this.snackBar.open('this is a message');
 
+    });
+  }
+
+  resetPassword(email) {
+    this.afAuth.auth.sendPasswordResetEmail(email).then(function() {
+      // email sent
+    }).catch(function(error) {
+      // error handler
     });
   }
 

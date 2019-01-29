@@ -31,16 +31,6 @@ export class RegisterLoginComponent {
   register = false;
   login = true;
 
-  showRegister() {
-    this.register = true;
-    this.login = false;
-  }
-
-  showLogin() {
-    this.register = false;
-    this.login = true;
-  }
-
   add() {
     this.auth.register(this.user.email, this.password);
 

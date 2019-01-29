@@ -16,8 +16,9 @@
                     <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
                     <mat-icon class="show-password" matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' :
                         'visibility'}}</mat-icon>
-                </mat-form-field>
-                <button mat-button (click)="loginEmail()">Log in</button>
+                </mat-form-field> 
+                <button class="loginButton" mat-button (click)="loginEmail()">Log in</button>
+                <label class="forgotPassword" routerLink="/login/resetpassword">Forgot password</label>
             </form>
         </mat-tab>
         <mat-tab label="Register">
