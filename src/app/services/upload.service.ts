@@ -39,6 +39,7 @@ export class UploadService {
           const databaseFile = {
             url: res,
             name: upload.file.name,
+            mime: upload.file.name.split('.').pop(),
             date: new Date()
           };
           this.saveFileData(databaseFile, userId, courseKey, courseType);

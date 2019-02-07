@@ -60,7 +60,6 @@ import { FileDropDirective } from './directives/file-drop.directive';
 import { RegisterLoginComponent } from './login/register-login/register-login.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

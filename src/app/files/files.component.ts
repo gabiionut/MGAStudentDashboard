@@ -15,13 +15,30 @@ import 'rxjs/add/operator/filter';
 import { UploadFilesComponent } from '../dialogs/upload-files/upload-files.component';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 
+export enum FileImages {
+  TXT = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
+  PDF = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
+  PPT = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
+  DOC = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
+  DOCX = 'https://i.ibb.co/v1f0vp7/docsIcon.png'
+}
+
+export enum FileType {
+  DOC = 'doc',
+  DOCX = 'docx',
+  TXT = 'txt',
+  PDF = 'pdf',
+  PPT = 'ppt'
+}
+
+
+
 @Component({
   selector: 'app-files',
   templateUrl: './files.component.html',
   styleUrls: ['./files.component.scss']
 })
 export class FilesComponent implements OnInit {
-
   courses: Course[];
   @Input() currentUser: User;
   @Input() course: Course;
@@ -36,6 +53,9 @@ export class FilesComponent implements OnInit {
   public length;
   public pageSizeOption = [40, 10, 20, 30];
 
+  fileType: string;
+
+
   selectedFiles: FileList;
   currentUpload: UploadFile;
   progress: { percentage: number } = { percentage: 0 };
@@ -43,7 +63,7 @@ export class FilesComponent implements OnInit {
   @Input() selectedFile: UploadFile;
   filesUpload: any[];
   filesShow: any[];
-
+  public image: string;
 
   constructor(
     public upService: UploadService,
@@ -53,10 +73,12 @@ export class FilesComponent implements OnInit {
     public coursesService: CoursesService,
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+
   ) {
 
   }
+
   ngOnInit() {
     this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
@@ -79,6 +101,7 @@ export class FilesComponent implements OnInit {
 
   }
 
+
   getCurrentUserProfile() {
     const currentUserUid = this.angularFireAuth.auth.currentUser.uid;
     return this.angularFireDatabase.object(`users/${currentUserUid}`);
@@ -96,6 +119,31 @@ export class FilesComponent implements OnInit {
     this.contextMenu.menuData = { 'item': item };
     this.contextMenu.openMenu();
     this.selectedFile = item;
+  }
+
+  getImageCard(item: UploadFile) {
+    switch (this.selectedFile.mime) {
+      case FileType.DOC:
+        this.image = 'https://i.ibb.co/v1f0vp7/docsIcon.png';
+        break;
+      case FileType.DOCX:
+        this.image = 'https://i.ibb.co/v1f0vp7/docsIcon.png';
+        break;
+      case FileType.PDF:
+        this.image = 'https://i.ibb.co/3TxQ42F/pdfIcon.png';
+        break;
+      case FileType.PPT:
+        this.image = 'https://i.ibb.co/b1j8wk0/pptIcon.png';
+        break;
+      case FileType.TXT:
+        this.image = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png';
+        break;
+      default:
+        this.image = 'https://i.ibb.co/jR9BHXS/ads.png';
+        break;
+    }
+    console.log(this.selectedFile.mime);
+    console.log(this.image);
   }
 
   openDeleteFileDialog(course: Course) {

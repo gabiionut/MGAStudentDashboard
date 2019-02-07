@@ -3,6 +3,7 @@ export class UploadFile {
     file: File;
     name: string;
     url: string;
+    mime: string;
     createdAt: Date = new Date();
 
     constructor(file: File) {
