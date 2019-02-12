@@ -19,8 +19,10 @@ export enum FileImages {
   TXT = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
   PDF = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
   PPT = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
+  PPTX = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
   DOC = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
-  DOCX = 'https://i.ibb.co/v1f0vp7/docsIcon.png'
+  DOCX = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
+  DEFAULT = 'https://i.ibb.co/jR9BHXS/ads.png'
 }
 
 export enum FileType {
@@ -28,7 +30,8 @@ export enum FileType {
   DOCX = 'docx',
   TXT = 'txt',
   PDF = 'pdf',
-  PPT = 'ppt'
+  PPT = 'ppt',
+  PPTX = 'pptx'
 }
 
 
@@ -61,8 +64,8 @@ export class FilesComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   contextMenuPosition = { x: '0px', y: '0px' };
   @Input() selectedFile: UploadFile;
-  filesUpload: any[];
-  filesShow: any[];
+  filesUpload: UploadFile[];
+  filesShow: UploadFile[];
   public image: string;
 
   constructor(
@@ -98,7 +101,6 @@ export class FilesComponent implements OnInit {
           this.getUploadFile();
         });
     });
-
   }
 
 
@@ -121,29 +123,32 @@ export class FilesComponent implements OnInit {
     this.selectedFile = item;
   }
 
-  getImageCard(item: UploadFile) {
-    switch (this.selectedFile.mime) {
-      case FileType.DOC:
-        this.image = 'https://i.ibb.co/v1f0vp7/docsIcon.png';
-        break;
-      case FileType.DOCX:
-        this.image = 'https://i.ibb.co/v1f0vp7/docsIcon.png';
-        break;
-      case FileType.PDF:
-        this.image = 'https://i.ibb.co/3TxQ42F/pdfIcon.png';
-        break;
-      case FileType.PPT:
-        this.image = 'https://i.ibb.co/b1j8wk0/pptIcon.png';
-        break;
-      case FileType.TXT:
-        this.image = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png';
-        break;
-      default:
-        this.image = 'https://i.ibb.co/jR9BHXS/ads.png';
-        break;
-    }
-    console.log(this.selectedFile.mime);
-    console.log(this.image);
+  setImageCard() {
+    this.filesUpload.forEach(file => {
+      switch (file.mime) {
+        case FileType.DOC:
+          file.image = FileImages.DOC;
+          break;
+        case FileType.DOCX:
+          file.image = FileImages.DOCX;
+          break;
+        case FileType.PDF:
+          file.image = FileImages.PDF;
+          break;
+        case FileType.PPT:
+          file.image = FileImages.PPT;
+          break;
+        case FileType.PPTX:
+          file.image = FileImages.PPTX;
+          break;
+        case FileType.TXT:
+          file.image = FileImages.TXT;
+          break;
+        default:
+          file.image = FileImages.DEFAULT;
+          break;
+      }
+    });
   }
 
   openDeleteFileDialog(course: Course) {
@@ -173,6 +178,7 @@ export class FilesComponent implements OnInit {
         });
         this.length = this.filesUpload.length;
         this.updateFilesList();
+        this.setImageCard();
       });
   }
 
