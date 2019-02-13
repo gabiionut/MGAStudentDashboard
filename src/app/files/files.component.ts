@@ -17,6 +17,7 @@ import { CourseDeleteComponent } from '../message-alert/course-delete/course-del
 import { isNgTemplate } from '@angular/compiler';
 
 export enum FileImages {
+<<<<<<< HEAD
   txt = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
   pdf = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
   ppt = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
@@ -25,6 +26,15 @@ export enum FileImages {
   jpeg = 'https://i.ibb.co/SBsJqYC/img.png',
   png = 'https://i.ibb.co/SBsJqYC/img.png',
   jpg = 'https://i.ibb.co/SBsJqYC/img.png'
+=======
+  TXT = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
+  PDF = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
+  PPT = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
+  PPTX = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
+  DOC = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
+  DOCX = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
+  DEFAULT = 'https://i.ibb.co/jR9BHXS/ads.png'
+>>>>>>> 66c4bed5dc13ee6a57e80a7d597c7380430af64a
 }
 
 export enum FileType {
@@ -33,9 +43,13 @@ export enum FileType {
   TXT = 'txt',
   PDF = 'pdf',
   PPT = 'ppt',
+<<<<<<< HEAD
   JPEG = 'jpeg',
   PNG = 'png',
   JPG = 'jpg'
+=======
+  PPTX = 'pptx'
+>>>>>>> 66c4bed5dc13ee6a57e80a7d597c7380430af64a
 }
 
 @Component({
@@ -66,9 +80,14 @@ export class FilesComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   contextMenuPosition = { x: '0px', y: '0px' };
   @Input() selectedFile: UploadFile;
+<<<<<<< HEAD
   filesUpload: any[];
   filesShow: any[];
 
+=======
+  filesUpload: UploadFile[];
+  filesShow: UploadFile[];
+>>>>>>> 66c4bed5dc13ee6a57e80a7d597c7380430af64a
   public image: string;
 
   constructor(
@@ -103,7 +122,6 @@ export class FilesComponent implements OnInit {
           this.getUploadFile();
         });
     });
-
   }
 
 
@@ -187,6 +205,7 @@ export class FilesComponent implements OnInit {
         });
         this.length = this.filesUpload.length;
         this.updateFilesList();
+        this.setImageCard();
       });
   }
 
