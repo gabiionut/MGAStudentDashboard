@@ -7,7 +7,8 @@
         <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
           [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
         </div>
-        <img mat-card-image style="width:80% !important;display: block;margin-left: auto; margin-right: auto;" src="{{this.image}}">
+        
+        <img  mat-card-image style="width:80% !important;display: block;margin-left: auto; margin-right: auto;" src="{{file.image}}">
         <mat-card-title>{{file.name}}</mat-card-title>
 
         <mat-menu #contextMenu="matMenu">

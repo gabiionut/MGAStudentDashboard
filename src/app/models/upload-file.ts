@@ -4,6 +4,7 @@ export class UploadFile {
     name: string;
     url: string;
     mime: string;
+    image: string;
     createdAt: Date = new Date();
 
     constructor(file: File) {
