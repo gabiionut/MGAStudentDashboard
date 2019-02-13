@@ -69,7 +69,7 @@ export class FilesComponent implements OnInit {
   @Input() selectedFile: UploadFile;
   filesUpload: UploadFile[];
   filesShow: UploadFile[];
-  public image: string;
+
 
   constructor(
     public upService: UploadService,
@@ -89,7 +89,6 @@ export class FilesComponent implements OnInit {
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.courseKey = params['params'].key;
         this.courseType = params['params'].type;
-        this.image = params['params'].mime;
       });
       this.getUploadFile();
       this.router.events
