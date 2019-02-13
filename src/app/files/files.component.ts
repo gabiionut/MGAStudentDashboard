@@ -17,24 +17,15 @@ import { CourseDeleteComponent } from '../message-alert/course-delete/course-del
 import { isNgTemplate } from '@angular/compiler';
 
 export enum FileImages {
-<<<<<<< HEAD
-  txt = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
-  pdf = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
-  ppt = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
-  doc = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
-  docx = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
-  jpeg = 'https://i.ibb.co/SBsJqYC/img.png',
-  png = 'https://i.ibb.co/SBsJqYC/img.png',
-  jpg = 'https://i.ibb.co/SBsJqYC/img.png'
-=======
   TXT = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
   PDF = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
   PPT = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
   PPTX = 'https://i.ibb.co/b1j8wk0/pptIcon.png',
   DOC = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
   DOCX = 'https://i.ibb.co/v1f0vp7/docsIcon.png',
+  PNG = 'https://i.ibb.co/SBsJqYC/img.png',
+  JPEG = 'https://i.ibb.co/SBsJqYC/img.png',
   DEFAULT = 'https://i.ibb.co/jR9BHXS/ads.png'
->>>>>>> 66c4bed5dc13ee6a57e80a7d597c7380430af64a
 }
 
 export enum FileType {
@@ -43,13 +34,9 @@ export enum FileType {
   TXT = 'txt',
   PDF = 'pdf',
   PPT = 'ppt',
-<<<<<<< HEAD
-  JPEG = 'jpeg',
+  PPTX = 'pptx',
   PNG = 'png',
-  JPG = 'jpg'
-=======
-  PPTX = 'pptx'
->>>>>>> 66c4bed5dc13ee6a57e80a7d597c7380430af64a
+  JPEG = 'jpeg'
 }
 
 @Component({
@@ -80,14 +67,8 @@ export class FilesComponent implements OnInit {
   progress: { percentage: number } = { percentage: 0 };
   contextMenuPosition = { x: '0px', y: '0px' };
   @Input() selectedFile: UploadFile;
-<<<<<<< HEAD
-  filesUpload: any[];
-  filesShow: any[];
-
-=======
   filesUpload: UploadFile[];
   filesShow: UploadFile[];
->>>>>>> 66c4bed5dc13ee6a57e80a7d597c7380430af64a
   public image: string;
 
   constructor(
@@ -122,6 +103,7 @@ export class FilesComponent implements OnInit {
           this.getUploadFile();
         });
     });
+
   }
 
 
@@ -144,38 +126,6 @@ export class FilesComponent implements OnInit {
     this.selectedFile = item;
   }
 
-  getImageCard(mime: UploadFile) {
-    switch (mime.mime) {
-      case FileType.DOC:
-        mime.image = FileImages.doc;
-        break;
-      case FileType.DOCX:
-        mime.image = FileImages.docx;
-        break;
-      case FileType.PDF:
-        mime.image = FileImages.pdf;
-        break;
-      case FileType.PPT:
-        mime.image = FileImages.ppt;
-        break;
-      case FileType.TXT:
-        mime.image = FileImages.txt;
-        break;
-      case FileType.JPEG:
-        mime.image = FileImages.jpeg;
-        break;
-      case FileType.PNG:
-        mime.image = FileImages.png;
-        break;
-      case FileType.JPG:
-        mime.image = FileImages.jpg;
-        break;
-      default:
-        this.image = 'https://i.ibb.co/jR9BHXS/ads.png';
-        break;
-    }
-    console.log(mime.image);
-  }
 
   openDeleteFileDialog(course: Course) {
     const dialogRef = this.dialog.open(CourseDeleteComponent, {
@@ -191,13 +141,45 @@ export class FilesComponent implements OnInit {
     });
   }
 
-
+  setImageCard() {
+    this.filesUpload.forEach(file => {
+      switch (file.mime) {
+        case FileType.DOC:
+          file.image = FileImages.DOC;
+          break;
+        case FileType.DOCX:
+          file.image = FileImages.DOCX;
+          break;
+        case FileType.PDF:
+          file.image = FileImages.PDF;
+          break;
+        case FileType.PPT:
+          file.image = FileImages.PPT;
+          break;
+        case FileType.PPTX:
+          file.image = FileImages.PPTX;
+          break;
+        case FileType.TXT:
+          file.image = FileImages.TXT;
+          break;
+        case FileType.PNG:
+          file.image = FileImages.PNG;
+          break;
+        case FileType.JPEG:
+          file.image = FileImages.JPEG;
+          break;
+        default:
+          file.image = FileImages.DEFAULT;
+          break;
+      }
+    });
+  }
 
   getUploadFile() {
     this.upService.getUpload(this.currentUser.ui, this.courseKey, this.courseType).snapshotChanges()
       .subscribe(list => {
         this.filesUpload = list.map(item => {
-         console.log(item.payload.val().image);
+          console.log(item.payload.val().image);
           return {
             key: item.key,
             ...item.payload.val(),
