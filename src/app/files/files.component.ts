@@ -15,9 +15,7 @@ import 'rxjs/add/operator/filter';
 import { UploadFilesComponent } from '../dialogs/upload-files/upload-files.component';
 import { CourseDeleteComponent } from '../message-alert/course-delete/course-delete.component';
 import { isNgTemplate } from '@angular/compiler';
-import { BrowserModule  } from '@angular/platform-browser';
 
-import { Ng2SearchPipeModule } from 'ng2-search-filter';
 export enum FileImages {
   TXT = 'https://i.ibb.co/kxrk31t/txt-Icon-1.png',
   PDF = 'https://i.ibb.co/3TxQ42F/pdfIcon.png',
@@ -60,7 +58,9 @@ export class FilesComponent implements OnInit {
   public pageSize = 40;
   public length;
   public pageSizeOption = [40, 10, 20, 30];
+
   fileType: string;
+
 
   selectedFiles: FileList;
   currentUpload: UploadFile;
@@ -69,7 +69,7 @@ export class FilesComponent implements OnInit {
   @Input() selectedFile: UploadFile;
   filesUpload: UploadFile[];
   filesShow: UploadFile[];
-  filterKeyword: string;
+
 
   constructor(
     public upService: UploadService,
@@ -178,6 +178,7 @@ export class FilesComponent implements OnInit {
     this.upService.getUpload(this.currentUser.ui, this.courseKey, this.courseType).snapshotChanges()
       .subscribe(list => {
         this.filesUpload = list.map(item => {
+          console.log(item.payload.val().image);
           return {
             key: item.key,
             ...item.payload.val(),

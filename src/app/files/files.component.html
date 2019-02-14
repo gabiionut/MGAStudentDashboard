@@ -1,17 +1,13 @@
 <mat-drawer-container class="page-container">
   <mat-drawer-content class="left-side">
-      <div>
-        <mat-form-field class="search">
-          <input matInput placeholder="Cauta" [(ngModel)]="filterKeyword">
-        </mat-form-field>
-      </div>  
     <div class="file-card-display " style="display: flex; flex-wrap: wrap;" fxLayout="row wrap" fxLayout.lt-xs="column"
       fxLayoutGap="10px">
-      <mat-card *ngFor="let file of filesShow |filter:filterKeyword" class="example-card" style="width: 100px; margin-top: 15px !important;"
+      <mat-card *ngFor="let file of filesShow" class="example-card" style="width: 100px; margin-top: 15px !important;"
         (click)="openDownloadFile(file)" (contextmenu)="onContextMenuFile($event, file)">
         <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
           [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: file}">
         </div>
+        
         <img mat-card-image style="width:80% !important;display: block;margin-left: auto; margin-right: auto;" src="{{file.image}}">
         <mat-card-title>{{file.name}}</mat-card-title>
 
