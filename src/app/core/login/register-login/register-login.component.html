@@ -13,7 +13,7 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                    <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
                     <mat-icon class="show-password" matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' :
                         'visibility'}}</mat-icon>
                 </mat-form-field> 
@@ -37,7 +37,7 @@
                     </mat-error>
                 </mat-form-field>
                 <mat-form-field>
-                    <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+                    <input matInput [(ngModel)]=password name="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" required>
                     <mat-icon class="show-password" matSuffix (click)="hide = !hide"> {{hide ? 'visibility_off' :
                         'visibility'}}</mat-icon>
                 </mat-form-field>
