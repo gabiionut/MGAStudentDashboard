@@ -53,7 +53,10 @@ mat-card {
 .search {
     margin-left: 15px;
 }
-
+.spinnerLoading {
+    display: inline;
+    padding-left: 500px !important;
+}
 @media screen and (max-width: 959px) {
     .page-container {
         margin-left: 0px !important;

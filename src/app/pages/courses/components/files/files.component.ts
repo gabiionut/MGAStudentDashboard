@@ -45,6 +45,7 @@ export class FilesComponent implements OnInit {
   public filesUpload: UploadFile[];
   public filesShow: UploadFile[];
   public filterKeyword: string;
+  public showSpinner = true;
 
   constructor(
     public upService: UploadService,
@@ -160,6 +161,7 @@ export class FilesComponent implements OnInit {
         this.length = this.filesUpload.length;
         this.updateFilesList();
         this.setImageCard();
+        this.showSpinner = false;
       });
   }
 

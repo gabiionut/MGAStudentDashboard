@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatInputModule, MatTabsModule} from '@angular/material';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
@@ -72,6 +73,7 @@ import { UserService } from './services/user.service';
     ResetPasswordComponent,
   ],
   imports: [
+    MatProgressSpinnerModule,
     Ng2SearchPipeModule,
     ReactiveFormsModule,
     MatPaginatorModule,
