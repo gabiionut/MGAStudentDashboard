@@ -19,15 +19,13 @@
     padding: 20px;
 }
 
-.loginButton {
+.loginButton, .registerButton {
     width: 100%;
+    background-color:map-get($colors,primary);
+    color: white;
     &:hover{
-    background-color:map-get($colors,secondary);
+    background-color:map-get($colors,primary);
     }
-}
-.registerButton {
-    width: 200px;
-    background-color:map-get($colors,secondary);    
 }
 
 hr {
@@ -39,4 +37,8 @@ hr {
     text-align: center;
     margin-top:7px;
     cursor: pointer;
+    text-decoration: underline;
+    &:hover{
+        color:map-get($colors,primary);
+    }
 }
