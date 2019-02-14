@@ -3,7 +3,7 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { User } from '../models/user.model';
+import { User } from '../core/models/user.model';
 import { MatSnackBar } from '@angular/material';
 
 @Injectable({

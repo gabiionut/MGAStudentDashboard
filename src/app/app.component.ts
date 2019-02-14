@@ -1,8 +1,8 @@
-import { UserService } from './services/user.service';
 import { Router } from '@angular/router';
-import { AuthenticationService } from './services/authentication.service';
 import { Component } from '@angular/core';
-import { User } from './models/user.model';
+import { AuthenticationService } from './services/authentication.service';
+import { User } from 'firebase';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { User } from './models/user.model';
 })
 export class AppComponent {
   title = 'Student DashBoard';
-  currentUser;
+  currentUser: User;
 
   constructor(public authService: AuthenticationService, private route: Router, private userService: UserService) {
 

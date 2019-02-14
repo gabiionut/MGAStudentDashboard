@@ -1,0 +1,42 @@
+@import "../../../variables";
+.registerLoginContainer {
+    margin-top: 250px;
+    background-color: #ffffff;
+    
+}
+
+.register {
+    box-shadow: 5px 10px 8px #888888;
+    padding: 20px;
+}
+
+.show-password {
+    cursor: pointer;
+}
+ 
+.login {
+    box-shadow: 5px 10px 8px #888888;
+    padding: 20px;
+}
+
+.loginButton {
+    width: 100%;
+    &:hover{
+    background-color:map-get($colors,secondary);
+    }
+}
+.registerButton {
+    width: 200px;
+    background-color:map-get($colors,secondary);    
+}
+
+hr {
+    margin-top: 0 !important;
+}
+
+.forgotPassword {
+    font-size:12px;
+    text-align: center;
+    margin-top:7px;
+    cursor: pointer;
+}

@@ -1,0 +1,61 @@
+@import "../../../../variables";
+
+.file-card-display {
+    margin-left: 70px!important;
+}
+
+mat-card {
+    padding-bottom: 5px !important;
+    margin-top: 20px !important;
+    cursor: pointer;
+}
+
+.mat-card-title {
+    font-weight:bold;
+    font-size: 12px; 
+    height: 30px;
+    overflow: hidden;
+}
+.page-container {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #eee;  
+    margin-top: 4px;
+    margin-left: 220px;
+  }
+    
+.right-side{
+    text-align: center;
+    font-size: 150px;
+}
+
+.fab-button {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+    z-index: 6;
+    background-color: map-get($colors,primary);
+}
+
+.fab-button:hover {
+    color: map-get($colors,secondary);
+}
+.pagination {
+   position:relative;
+   width:100%;
+   height:60px;
+   margin-top:10px;
+}
+
+.search {
+    margin-left: 15px;
+}
+
+@media screen and (max-width: 959px) {
+    .page-container {
+        margin-left: 0px !important;
+    }
+}
