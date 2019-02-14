@@ -59,6 +59,7 @@ import { UploadFilesComponent } from './dialogs/upload-files/upload-files.compon
 import { FileDropDirective } from './directives/file-drop.directive';
 import { RegisterLoginComponent } from './login/register-login/register-login.component';
 import { ResetPasswordComponent } from './login/reset-password/reset-password.component';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { ResetPasswordComponent } from './login/reset-password/reset-password.co
     ResetPasswordComponent,
   ],
   imports: [
+    Ng2SearchPipeModule,
     ReactiveFormsModule,
     MatPaginatorModule,
     FlexLayoutModule,
