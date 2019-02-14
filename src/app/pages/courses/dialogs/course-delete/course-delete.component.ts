@@ -2,9 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { MatDialogRef, MatDialog } from '@angular/material';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { Course } from '../../../models/course.model';
+import { Course } from '../../models/course.model';
 import { User } from 'src/app/core/models/user.model';
-import { CoursesService } from '../../../services/courses.service';
+import { CoursesService } from '../../services/courses.service';
 
 @Component({
   selector: 'app-course-delete',

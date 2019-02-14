@@ -14,7 +14,7 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import 'rxjs/add/operator/filter';
 import { UploadFilesComponent } from '../../dialogs/upload-files/upload-files.component';
 import { FileImages, FileType } from '../../../../core/helpers/enum.helper';
-import { CourseDeleteComponent } from '../../dialogs/message-alert/course-delete/course-delete.component';
+import { CourseDeleteComponent } from '../../dialogs/course-delete/course-delete.component';
 
 @Component({
   selector: 'app-files',

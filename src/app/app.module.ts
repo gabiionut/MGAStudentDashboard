@@ -48,7 +48,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {
   ChooseCoursesStructureFormComponent
 } from './pages/courses/dialogs/choose-courses-structure-form/choose-courses-structure-form.component';
-import { CourseDeleteComponent } from './pages/courses/dialogs/message-alert/course-delete/course-delete.component';
+import { CourseDeleteComponent } from './pages/courses/dialogs/course-delete/course-delete.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';

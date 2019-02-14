@@ -11,7 +11,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { UploadFile } from '../../models/upload-file';
 import { MediaChange, ObservableMedia } from '@angular/flex-layout';
 import { ChooseCoursesStructureFormComponent } from '../../dialogs/choose-courses-structure-form/choose-courses-structure-form.component';
-import { CourseDeleteComponent } from '../../dialogs/message-alert/course-delete/course-delete.component';
+import { CourseDeleteComponent } from '../../dialogs/course-delete/course-delete.component';
 import { SidenavService } from 'src/app/services/sidenav.service';
 
 
