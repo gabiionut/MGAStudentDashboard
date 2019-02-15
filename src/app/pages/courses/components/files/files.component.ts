@@ -15,6 +15,7 @@ import 'rxjs/add/operator/filter';
 import { UploadFilesComponent } from '../../dialogs/upload-files/upload-files.component';
 import { FileImages, FileType } from '../../../../core/helpers/enum.helper';
 import { CourseDeleteComponent } from '../../dialogs/course-delete/course-delete.component';
+import { LoaderService } from 'src/app/core/loader/loader.service';
 
 @Component({
   selector: 'app-files',
@@ -45,7 +46,6 @@ export class FilesComponent implements OnInit {
   public filesUpload: UploadFile[];
   public filesShow: UploadFile[];
   public filterKeyword: string;
-  public showSpinner = true;
 
   constructor(
     public upService: UploadService,
@@ -56,11 +56,13 @@ export class FilesComponent implements OnInit {
     private angularFireAuth: AngularFireAuth,
     private angularFireDatabase: AngularFireDatabase,
     public dialog: MatDialog,
+    public loader: LoaderService
   ) {
 
   }
   ngOnInit() {
-    this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
+     this.loader.display(true);
+      this.getCurrentUserProfile().valueChanges().subscribe((res: User) => {
       this.currentUser = res;
       this.route.paramMap.subscribe((params: ParamMap) => {
         this.courseKey = params['params'].key;
@@ -77,6 +79,7 @@ export class FilesComponent implements OnInit {
           });
           this.getUploadFile();
         });
+        // this.loader.display(false);
     });
 
   }
@@ -161,7 +164,6 @@ export class FilesComponent implements OnInit {
         this.length = this.filesUpload.length;
         this.updateFilesList();
         this.setImageCard();
-        this.showSpinner = false;
       });
   }
 

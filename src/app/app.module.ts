@@ -53,6 +53,7 @@ import { CourseDeleteComponent } from './pages/courses/dialogs/course-delete/cou
 import { AuthGuardService } from './services/auth-guard.service';
 import { AuthenticationService } from './services/authentication.service';
 import { UserService } from './services/user.service';
+import { LoaderComponent } from './core/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { UserService } from './services/user.service';
     FileDropDirective,
     RegisterLoginComponent,
     ResetPasswordComponent,
+    LoaderComponent,
   ],
   imports: [
     MatProgressSpinnerModule,

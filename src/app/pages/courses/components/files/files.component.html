@@ -5,7 +5,6 @@
           <input matInput placeholder="Cauta" [(ngModel)]="filterKeyword">
         </mat-form-field>
       </div>  
-      <mat-spinner class="spinnerLoading" *ngIf="showSpinner"></mat-spinner>
     <div class="file-card-display " style="display: flex; flex-wrap: wrap;" fxLayout="row wrap" fxLayout.lt-xs="column"
       fxLayoutGap="10px">
       <mat-card *ngFor="let file of filesShow |filter:filterKeyword" class="example-card" style="width: 100px; margin-top: 15px !important;"
