@@ -1,4 +1,4 @@
 <app-navbar></app-navbar>
 <app-sidenavcourses *ngIf="authService.user$ | async"></app-sidenavcourses>
-<app-loader *ngIf="showLoader"></app-loader>
+<app-loader ></app-loader>
 <router-outlet></router-outlet>
