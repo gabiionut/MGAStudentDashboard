@@ -1,0 +1,14 @@
+<mat-toolbar>
+  <mat-icon class="logo-icon">home</mat-icon>
+  <div class="logo" routerLink="/">
+    StudAid
+  </div>
+  <span class="fill-remaining-space"></span>
+</mat-toolbar>
+<div div fxLayout="column" fxLayoutAlign="center center">
+<app-register-login></app-register-login>
+
+<button mat-button class="login-button" (click)="login()">
+  Sign in with Google
+</button>
+</div>

@@ -1,0 +1,75 @@
+<mat-sidenav #sidenav [(mode)]="over" [(opened)]="sidenavService.opened" class="bottom-to-top">
+  <mat-accordion>
+    <mat-expansion-panel *ngIf="router.url == '/' ">
+      <mat-expansion-panel-header class="expanation-panel-home" routerLink="/cursuri">
+        <mat-panel-title>
+          Cursuri
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <div *ngIf="router.url.startsWith('/cursuri')">
+
+    <button mat-button class="addCourseButton" (click)="openDialog()">Adauga curs</button>
+    <mat-accordion>
+      <mat-expansion-panel *ngFor="let c of courses">
+        <mat-expansion-panel-header class="expanation-panel" (contextmenu)="onContextMenu($event, c)">
+          <mat-panel-title>
+            {{c.nume}}
+          </mat-panel-title>
+          <div style="position: fixed" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"
+            [matMenuTriggerFor]="contextMenu" [matMenuTriggerData]="{item: c}">
+          </div>
+        </mat-expansion-panel-header>
+        <mat-selection-list role="list">
+          <mat-list-option class="sub-menu-items" *ngIf="c.curs" (contextmenu)="onContextMenu($event, c)" [routerLink]="['cursuri', c.key,'curs']"
+            routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer"
+            (click)="onCourseTypeClick(c, 'curs')">
+            <span>
+              <i class="fa fa-book"></i>
+              Curs
+            </span>
+          </mat-list-option>
+          <mat-list-option class="sub-menu-items" *ngIf="c.laborator" (contextmenu)="onContextMenu($event, c)"
+            [routerLink]="['cursuri', c.key,'laborator']" routerLinkActive="active" mat-list-option role="listitem"
+            style="cursor: pointer" (click)="onCourseTypeClick(c, 'laborator')" [routerLinkActiveOptions]="{exact: true}">
+            <span>
+              <i class="fa fa-flask"></i>
+              Laborator
+            </span>
+          </mat-list-option>
+          <mat-list-option class="sub-menu-items" *ngIf="c.seminar" (contextmenu)="onContextMenu($event, c)"
+            mat-list-option [routerLink]="['cursuri', c.key,'seminar']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'seminar')">
+            <span>
+                <i class="fas fa-pencil-alt"></i>
+              Seminar
+            </span>
+          </mat-list-option>
+          <mat-list-option class="sub-menu-items" *ngIf="c.proiect" (contextmenu)="onContextMenu($event, c)"
+            mat-list-option [routerLink]="['cursuri', c.key,'proiect']" routerLinkActive="active"
+            [routerLinkActiveOptions]="{exact: true}" role="listitem" style="cursor: pointer" (click)="onCourseTypeClick(c, 'proiect')">
+            <span>
+                <i class="fas fa-clipboard-list"></i>
+              Proiect
+            </span>
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-menu #contextMenu="matMenu">
+      <ng-template matMenuContent let-item="item">
+        <button mat-menu-item (click)="openDialog(item)">
+          <mat-icon>edit</mat-icon>
+          <span>Editeaza</span>
+        </button>
+        <button mat-menu-item (click)="openDeleteDialog(item)">
+          <mat-icon>delete</mat-icon>
+          <span>Sterge</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+  </div>
+</mat-sidenav>

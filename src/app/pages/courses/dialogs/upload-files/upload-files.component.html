@@ -1,0 +1,16 @@
+<div class="upload-drop-zone" appFileDrop (filesDropped)="detectFiles($event)" (filesHovered)="dropzoneState($event)"
+  [ngClass]="{'borderActive': dropzoneActive}" fxLayoutAlign="start center" fxLayout="column">
+  <div fxLayout="row">
+    <mat-icon style="width:100px; height: 100px;" class="material-icons md-100 primary-color" [ngClass]="{'iconActive': dropzoneActive}">cloud_upload</mat-icon>
+  </div>
+  <div fxLayout="row" class="drag-drop-text" [ngClass]="{'textActive': dropzoneActive}">Trage fisierele aici</div>
+  <div fxLayout="row" style="color: gray; margin-top: 5px;" class="font-roboto" [ngClass]="{'hidden': dropzoneActive}">sau</div>
+  <div class="choose-btn font-roboto" [ngClass]="{'hidden': dropzoneActive}">
+    <form #form>
+      <input #inputFile type="file" name="file" id="file" class="inputfile" multiple size="15000" (change)="detectFiles($event.target.files)" />
+      <label class="bg-primary choose-btn" for="file">Alege fisiere</label>
+    </form>
+  </div>
+  <mat-progress-bar style="margin-top: 20px;" *ngIf="this.upService.uploadFinished" mode="determinate" value="{{progress.percentage}}">
+  </mat-progress-bar>
+</div>

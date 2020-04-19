@@ -1,0 +1,106 @@
+@import "../../../../variables";
+
+  .left-side{
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-top:4px;
+    background-color: map-get($colors,primary);
+    width:220px;
+    text-align: center;
+  }
+  .disabled
+  {
+      background-color: orange;
+  }
+
+  .addCourseButton {
+    color: map-get($colors,text-primary);
+    width: 230px;
+    
+
+    &:hover {
+      align-content: center;
+      width: 230px;
+      background-color: map-get($colors,secondary);
+    }
+  }
+
+  .mat-expansion-panel{
+    background-color: map-get($colors,primary);
+  }
+
+
+
+  .expanation-panel{
+    background-color: map-get($colors, primary) !important;
+    color: map-get($colors, text-primary) !important;
+    border-radius: 0 !important;
+       &:hover {
+         background-color: map-get($colors,secondary) !important;
+       }
+  }
+
+  .expanation-panel-home{
+    background-color: map-get($colors, primary) !important;
+    color: map-get($colors, text-primary) !important;
+    border-radius: 0 !important;
+       &:hover {
+         background-color: map-get($colors,secondary) !important;
+       }
+  }
+
+  
+.active {
+   background-color: map-get($colors,secondary) !important;
+}
+
+  mat-selection-list >  mat-list-option{
+    text-decoration: none;
+    background-color: map-get($colors, primary);
+    color: map-get($colors, text-primary) !important;
+     
+       &:hover {
+         background-color: map-get($colors,secondary) !important;
+       }
+      }
+
+   mat-panel-title {
+    color: map-get($colors, text-primary) !important;
+  }
+
+  .sub-menu-items {
+    padding-left: 30px !important;
+  }
+
+  ::ng-deep .mat-expansion-panel-body{
+    background-color: map-get($colors, primary);
+    color: map-get($colors, text-primary);
+    padding: 0px !important;
+  }
+  ::ng-deep .mat-list-text{
+    padding: 0 !important;
+  }
+
+  ::ng-deep .mat-expansion-indicator::after{
+    color: map-get($colors, text-primary);
+  }
+  ::ng-deep .mat-pseudo-checkbox{
+  display: none !important;
+}
+
+::ng-deep .expanation-panel-home > .mat-expansion-indicator:after {
+  display: none;
+}
+::ng-deep.mat-drawer-inner-container{
+  background-color:map-get($colors, primary) !important;
+  overflow-x: hidden;
+}
+
+.mat-drawer {
+  margin-top: 64px;
+  width: 230px !important;
+  margin-left: -8px;
+}
